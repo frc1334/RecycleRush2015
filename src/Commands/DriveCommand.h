@@ -6,6 +6,8 @@
 
 class DriveCommand: public CommandBase
 {
+private:
+	bool shiftUp, shiftDown;
 public:
 	DriveCommand();
 	void Initialize();

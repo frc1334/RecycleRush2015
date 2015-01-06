@@ -7,12 +7,16 @@ class Robot: public IterativeRobot
 {
 private:
 	Command *autonomousCommand;
+	Command *driveCommand;
+
 	LiveWindow *lw;
 
 	void RobotInit()
 	{
 		CommandBase::init();
 		autonomousCommand = new DriveCommand();
+		driveCommand = new DriveCommand();
+
 		lw = LiveWindow::GetInstance();
 	}
 	
@@ -40,6 +44,9 @@ private:
 		// this line or comment it out.
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
+		driveCommand->Start();
+
+
 	}
 
 	void TeleopPeriodic()
