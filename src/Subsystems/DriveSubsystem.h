@@ -1,16 +1,16 @@
-#ifndef EXAMPLE_SUBSYSTEM_H
-#define EXAMPLE_SUBSYSTEM_H
+#ifndef DRIVE_SUBSYSTEM_H
+#define DRIVE_SUBSYSTEM_H
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-class ExampleSubsystem: public Subsystem
+class DriveSubsystem: public Subsystem
 {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
-	ExampleSubsystem();
+	DriveSubsystem();
 	void InitDefaultCommand();
 };
 

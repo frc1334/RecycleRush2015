@@ -1,13 +1,13 @@
-#ifndef EXAMPLE_COMMAND_H
-#define EXAMPLE_COMMAND_H
+#ifndef DRIVE_COMMAND_H
+#define DRIVE_COMMAND_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class ExampleCommand: public CommandBase
+class DriveCommand: public CommandBase
 {
 public:
-	ExampleCommand();
+	DriveCommand();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -20,4 +20,9 @@
 //const int RANGE_FINDER_PORT = 1;
 //const int RANGE_FINDER_MODULE = 1;
 
+const int LEFT1 = 1;
+const int LEFT2 = 2;
+const int RIGHT1 = 3;
+const int RIGHT2 = 4;
+
 #endif
