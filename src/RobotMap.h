@@ -23,10 +23,10 @@
 const int JOYSTICK_DRIVE = 0;
 const int JOYSTICK_OPERATOR = 2;
 
-const int LEFT1 = 0;
-const int LEFT2 = 1;
-const int RIGHT1 = 2;
-const int RIGHT2 = 3;
+const int LEFT1 = 1;
+const int LEFT2 = 2;
+const int RIGHT1 = 3;
+const int RIGHT2 = 4;
 
 const int SHIFTSOLENOID = 1;
 
