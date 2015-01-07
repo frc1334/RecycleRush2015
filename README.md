@@ -1,4 +1,4 @@
-RecycleRush2015
+RecycleRush2015 [![Build Status](https://travis-ci.org/frc1334/RecycleRush2015.png?branch=master)](https://travis-ci.org/frc1334/RecycleRush2015)
 ===============
 
 Our 2015 Robot Code, 
