@@ -3,6 +3,8 @@
 
 #include "WPILib.h"
 #include "RobotMap.h"
+#include <math.h>
+
 class OI
 {
 private:
