@@ -1,5 +1,5 @@
 #include "OI.h"
-#include "Robotmap.h"
+#include "RobotMap.h"
 
 OI::OI() : Joystick_Drive(JOYSTICK_DRIVE), Joystick_Operator(JOYSTICK_OPERATOR)
 {
