@@ -21,7 +21,7 @@
 //const int RANGE_FINDER_MODULE = 1;
 
 const int JOYSTICK_DRIVE = 0;
-const int JOYSTICK_OPERATOR = 2;
+const int JOYSTICK_OPERATOR = 1;
 
 const int LEFT1 = 1;
 const int LEFT2 = 2;
