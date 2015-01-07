@@ -12,3 +12,5 @@ install:
 env:
   - PATH=$PATH:./ucpp-master/ucpp
 script: ucpp setup -t 1334 && ucpp init && ucpp configure py && make
+notifications:
+  email: false
