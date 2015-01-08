@@ -9,6 +9,7 @@ Driving Manual
 ---------------
 
 Driving is done using two XBOX controllers.  Controller one is used for driving, and controller two operates the operator.
+![xbox controller][xbox]
 
 
 ### Drive Remote #####
