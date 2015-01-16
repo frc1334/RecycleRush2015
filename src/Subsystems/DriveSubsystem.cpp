@@ -13,13 +13,15 @@ void DriveSubsystem::InitDefaultCommand()
 	// Set the default command for a subsystem here.
 	//SetDefaultCommand(new MySpecialCommand());
 }
-void DriveSubsystem::Drive(float speed, float turn)
+void DriveSubsystem::Drive(float speedLeft, float speedRight, float turn)
 {
-  DriveLeft1.Set(turn + speed);
-  DriveLeft2.Set(turn + speed);
-  DriveRight1.Set(turn - speed);
-  DriveRight2.Set(turn - speed);
+	float speed = (speedLeft *-1) + speedRight;
+	DriveLeft1.Set(turn + speed);
+	DriveLeft2.Set(turn + speed);
+	DriveRight1.Set(turn - speed);
+	DriveRight2.Set(turn - speed);
 }
+
 void DriveSubsystem::SetShiftState(bool state)
 {
 	ShiftSolenoid.Set(state);

@@ -1,4 +1,7 @@
 #include "DriveCommand.h"
+#include <iostream>
+
+using namespace std;
 
 DriveCommand::DriveCommand()
 {
@@ -15,7 +18,10 @@ void DriveCommand::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void DriveCommand::Execute()
 {
-	driveSubsystem->Drive(oi->GetDriveThrottle(), oi->GetDriveSteering());
+	driveSubsystem->Drive(oi->GetDriveLeftTrigger(), oi->GetDriveRightTrigger(), oi->GetDriveSteering());
+	//driveSubsystem->DriveRight();
+	//driveSubsystem->Drive(-oi->GetDriveThrottle(), oi->GetDriveSteering());
+	//cout <<"Trigger Values: " << oi->GetDriveThrottle() << endl;
 
 	/*if (oi->GetShiftUp() && !shiftUp)
 			drivetrainsubsystem->SetShiftState(true);
