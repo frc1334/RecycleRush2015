@@ -1,15 +1,24 @@
-/*
- * LimitswitchSubsystem.h
- *
- *  Created on: Jan 16, 2015
- *      Author: gabriel
- */
-
-#ifndef SRC_SUBSYSTEMS_LIMITSWITCHSUBSYSTEM_H_
-#define SRC_SUBSYSTEMS_LIMITSWITCHSUBSYSTEM_H_
+#ifndef LIMIT_SWITCH_SUBSYSTEM_H
+#define LIMIT_SWITCH_SUBSYSTEM_H
 
 
+#include "Commands/Subsystem.h"
+#include "WPILib.h"
+#include "RobotMap.h"
+
+class LimitswitchSubsystem: public Subsystem
+{
+private:
+	// It's desirable that everything possible under private except
+	// for methods that implement subsystem capabilities
+
+
+public:
+	LimitswitchSubsystem();
+	void InitDefaultCommand();
+	void Reset();
+};
 
 
 
-#endif /* SRC_SUBSYSTEMS_LIMITSWITCHSUBSYSTEM_H_ */
+#endif
