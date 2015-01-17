@@ -1,15 +1,19 @@
-/*
- * PickupSubsystem.h
- *
- *  Created on: Jan 16, 2015
- *      Author: gabriel
- */
+#ifndef PICKUP_SUBSYSTEM_H
+#define PICKUP_SUBSYSTEM_H
 
-#ifndef SRC_SUBSYSTEMS_PICKUPSUBSYSTEM_H_
-#define SRC_SUBSYSTEMS_PICKUPSUBSYSTEM_H_
+#include "Commands/Subsystem.h"
+#include "WPILib.h"
+#include "RobotMap.h"
 
+class PickupSubsystem: public Subsystem
+{
+private:
+	// It's desirable that everything possible under private except
+	// for methods that implement subsystem capabilities
+public:
+	PickupSubsystem();
+	void InitDefaultCommand();
+	void Reset();
+};
 
-
-
-
-#endif /* SRC_SUBSYSTEMS_PICKUPSUBSYSTEM_H_ */
+#endif
