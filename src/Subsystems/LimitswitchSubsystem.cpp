@@ -2,7 +2,8 @@
 #include "../RobotMap.h"
 
 LimitswitchSubsystem::LimitswitchSubsystem() :
-		Subsystem("LimitSwitchSubsystem")
+		Subsystem("LimitSwitchSubsystem"),Tier1(TIER1),Tier2(TIER2),Tier3(TIER3),
+		Tier4(TIER4),Tier5(TIER5),Tier6(TIER6),Tier7(TIER7)
 {
 
 }

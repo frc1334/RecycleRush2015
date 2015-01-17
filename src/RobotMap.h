@@ -32,4 +32,12 @@ const int SHIFTSOLENOID = 1;
 
 const int ELEVATOR = 5;
 
+const int TIER1 = 0;
+const int TIER2 = 0;
+const int TIER3 = 0;
+const int TIER4 = 0;
+const int TIER5 = 0;
+const int TIER6 = 0;
+const int TIER7 = 0;
+
 #endif
