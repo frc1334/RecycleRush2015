@@ -6,7 +6,10 @@ ElevatorSubsystem::ElevatorSubsystem() :
 {
 
 }
-
+void ElevatorSubsystem::Lift(float speed)
+{
+	Elevator.Set(speed);
+}
 void ElevatorSubsystem::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.

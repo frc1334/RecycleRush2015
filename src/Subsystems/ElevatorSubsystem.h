@@ -13,6 +13,7 @@ private:
 
 public:
 	ElevatorSubsystem();
+	void Lift(float speed);
 	void InitDefaultCommand();
 	void Reset();
 };
