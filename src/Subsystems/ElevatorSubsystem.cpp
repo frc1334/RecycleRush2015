@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 
 ElevatorSubsystem::ElevatorSubsystem() :
-		Subsystem("ElevatorSubsystem"),Elevator(ELEVATOR),
+		Subsystem("ElevatorSubsystem"),Elevator(ELEVATOR)
 {
 
 }
