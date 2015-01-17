@@ -2,16 +2,16 @@
 #include "../RobotMap.h"
 
 ElevatorSubsystem::ElevatorSubsystem() :
-		Subsystem("ElevatorSubsystem"),
+		Subsystem("ElevatorSubsystem"),Elevator(ELEVATOR),
 {
 
 }
 
-void DriveSubsystem::InitDefaultCommand()
+void ElevatorSubsystem::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
 	//SetDefaultCommand(new MySpecialCommand());
 }
-void DriveSubsystem::Reset()
+void ElevatorSubsystem::Reset()
 {
 }

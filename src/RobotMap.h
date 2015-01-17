@@ -30,4 +30,6 @@ const int RIGHT2 = 4;
 
 const int SHIFTSOLENOID = 1;
 
+const int ELEVATOR = 5;
+
 #endif

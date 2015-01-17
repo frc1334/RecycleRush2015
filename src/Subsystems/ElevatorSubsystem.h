@@ -1,15 +1,23 @@
-/*
- * ElevatorSubsystem.h
- *
- *  Created on: Jan 16, 2015
- *      Author: gabriel
- */
+#ifndef ELEVATOR_SUBSYSTEM_H
+#define ELEVATOR_SUBSYSTEM_H
 
-#ifndef SRC_SUBSYSTEMS_ELEVATORSUBSYSTEM_H_
-#define SRC_SUBSYSTEMS_ELEVATORSUBSYSTEM_H_
+#include "Commands/Subsystem.h"
+#include "WPILib.h"
+#include "RobotMap.h"
+
+class ElevatorSubsystem: public Subsystem
+{
+private:
+	Talon Elevator;
+
+
+public:
+	ElevatorSubsystem();
+	void InitDefaultCommand();
+	void Reset();
+};
 
 
 
 
-
-#endif /* SRC_SUBSYSTEMS_ELEVATORSUBSYSTEM_H_ */
+#endif
