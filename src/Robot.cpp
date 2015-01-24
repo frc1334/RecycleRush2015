@@ -1,12 +1,13 @@
 #include "Commands/DriveCommand.h"
 #include "WPILib.h"
 #include "Commands/Command.h"
+#include "Commands/AutonomousCommandGroup.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
 {
 private:
-	Command *autonomousCommand;
+	CommandGroup *autonomousCommand;
 	Command *driveCommand;
 
 	LiveWindow *lw;
@@ -14,7 +15,7 @@ private:
 	void RobotInit()
 	{
 		CommandBase::init();
-		autonomousCommand = new DriveCommand();
+		autonomousCommand = new AutonomousCommandGroup();
 		driveCommand = new DriveCommand();
 
 		lw = LiveWindow::GetInstance();
