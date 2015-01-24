@@ -18,7 +18,6 @@ public:
 	DriveSubsystem();
 	void InitDefaultCommand();
 	void Drive(float speedLeft, float speedRight, float turn);
-	void Drive(float speed, float turn);
 	void SetShiftState(bool state);
 	void Reset();
 };

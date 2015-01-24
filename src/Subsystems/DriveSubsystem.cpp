@@ -22,15 +22,6 @@ void DriveSubsystem::Drive(float speedLeft, float speedRight, float turn)
 	DriveRight2.Set(turn - speed);
 }
 
-void DriveSubsystem::Drive(float speed, float turn)
-{
-
-	DriveLeft1.Set(turn + speed);
-	DriveLeft2.Set(turn + speed);
-	DriveRight1.Set(turn - speed);
-	DriveRight2.Set(turn - speed);
-}
-
 void DriveSubsystem::SetShiftState(bool state)
 {
 	ShiftSolenoid.Set(state);
