@@ -2,11 +2,16 @@
 #ifndef CAMERASUBSYSTEM_H
 #define CAMERASUBSYSTEM_H
 
-class CameraSubsystem
+#include "Commands/Subsystem.h"
+#include "WPILib.h"
+#include "RobotMap.h"
+#include <opencv2/opencv.hpp>
+
+using namespace cv;
+
+class CameraSubsystem : public Subsystem
 {
-	IMAQdxSession session;
 	Image *frame;
-	IMAQdxError imaqError;
 	AxisCamera *camera;
 public:
 	CameraSubsystem();
