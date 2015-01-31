@@ -4,10 +4,8 @@
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
-#include "RobotMap.h"
-#include <opencv2/opencv.hpp>
+#include "../RobotMap.h"
 
-using namespace cv;
 
 class CameraSubsystem : public Subsystem
 {
