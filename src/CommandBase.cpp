@@ -2,6 +2,7 @@
 #include "Subsystems/ElevatorSubsystem.h"
 #include "Subsystems/LimitswitchSubsystem.h"
 #include "Subsystems/PickupSubsystem.h"
+#include "Subsystems/VisionSubsystem.h"
 #include "CommandBase.h"
 #include "Commands/Scheduler.h"
 
@@ -36,4 +37,5 @@ void CommandBase::init()
 	limitswitchSubsystem = new LimitswitchSubsystem();
 	pickupSubsystem = new PickupSubsystem();
 	visionSubsystem = new VisionSubsystem();
+
 }

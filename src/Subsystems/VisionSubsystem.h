@@ -11,13 +11,15 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	AxisCamera Camera1;
+	ColorImage Image1;
+
 public:
 	VisionSubsystem();
 	void InitDefaultCommand();
 	void Reset();
-
+	struct TargetReport;
+	struct Scores;
 	void Start();
-	int GetImage(ColorImage *image);
 
 	void WriteMaxFPS(int maxFPS);
 	void Stop();
