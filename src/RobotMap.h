@@ -28,6 +28,8 @@ const int LEFT2 = 2;
 const int RIGHT1 = 3;
 const int RIGHT2 = 4;
 
+const int CAMERA1 = 0;
+
 const int SHIFTSOLENOID = 1;
 
 const int ELEVATOR = 5;

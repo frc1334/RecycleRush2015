@@ -25,6 +25,7 @@ public:
 	static ElevatorSubsystem *elevatorSubsystem;
 	static PickupSubsystem *pickupSubsystem;
 	static LimitswitchSubsystem *limitswitchSubsystem;
+	static VisionSubsystem *visionSubsystem;
     static OI *oi;
 	static DriveSubsystem *driveSubsystem;
 };
