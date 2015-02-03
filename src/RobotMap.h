@@ -28,6 +28,8 @@ const int LEFT2 = 2;
 const int RIGHT1 = 3;
 const int RIGHT2 = 4;
 
+
+
 const int CAMERA1 = 0;
 
 const int SHIFTSOLENOID = 1;
@@ -41,5 +43,14 @@ const int TIER4 = 0;
 const int TIER5 = 0;
 const int TIER6 = 0;
 const int TIER7 = 0;
+
+// Pickup Subsystem
+
+const int BELTMOTORLEFT = 0;
+const int BELTMOTORRIGHT = 0;
+
+const int WHEELSOLENOIDLEFT = 0;
+const int WHEELSOLENOIDRIGHT = 0;
+// End pickup Subsystem
 
 #endif
