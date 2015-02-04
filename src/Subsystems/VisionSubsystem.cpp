@@ -33,7 +33,7 @@ void VisionSubsystem::InitDefaultCommand()
 
 void initCamera()
 {
-	Camsera.GetImage(Image);
+	Camera.GetImage(Image);
 
 }
 
