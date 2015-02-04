@@ -11,9 +11,9 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 
-	ColorImage *Image = new RGBImage("/testImage.jpg");
+	ColorImage *Image;
 	//BinaryImage *thresholdImage = Image->TresholdHSV(treshold);
-	AxisCamera *camera;
+	AxisCamera *Camera;
 
 
 public:

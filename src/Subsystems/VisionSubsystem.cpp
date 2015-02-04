@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 
 VisionSubsystem::VisionSubsystem() :
-		Subsystem("VisionSubsystem"), camera(CAMERA1),Image()
+		Subsystem("VisionSubsystem"), Camera(CAMERA1),Image()
 {
 
 }
@@ -33,7 +33,8 @@ void VisionSubsystem::InitDefaultCommand()
 
 void initCamera()
 {
-	 camera.GetImage(Image);
+	Camsera.GetImage(Image);
+
 }
 
 void particalAnalysis()
