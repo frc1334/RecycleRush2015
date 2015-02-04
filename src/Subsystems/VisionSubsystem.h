@@ -10,20 +10,20 @@ class VisionSubsystem: public Subsystem
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	AxisCamera Camera1;
-	ColorImage Image1;
+
+	ColorImage *Image = new RGBImage("/testImage.jpg");
+	//BinaryImage *thresholdImage = Image->TresholdHSV(treshold);
+	AxisCamera *camera;
+
 
 public:
 	VisionSubsystem();
 	void InitDefaultCommand();
+	void particalAnalysis();
+	void initCamera();
 	void Reset();
-	struct TargetReport;
 	struct Scores;
-	void Start();
-
-	void WriteMaxFPS(int maxFPS);
-	void Stop();
-	bool isHot();
+	struct TargetReport;
 };
 
 #endif

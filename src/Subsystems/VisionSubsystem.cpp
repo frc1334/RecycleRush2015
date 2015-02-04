@@ -2,16 +2,17 @@
 #include "../RobotMap.h"
 
 VisionSubsystem::VisionSubsystem() :
-		Subsystem("VisionSubsystem"), Camera1(CAMERA1)
+		Subsystem("VisionSubsystem"), camera(CAMERA1),Image()
 {
 
 }
 
-void VisionSubsystem::InitDefaultCommand()
+struct Scores
 {
-	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
-}
+	double rectangularity;
+	double aspectRatioVertical;
+	double aspectRatioHorizontal;
+};
 struct TargetReport
 {
 	int verticalIndex;
@@ -22,35 +23,25 @@ struct TargetReport
 	double rightScore;
 	double tapeWidthScore;
 	double verticalScore;
-
 };
+void VisionSubsystem::InitDefaultCommand()
+{
+	// Set the default command for a subsystem here.
+	//SetDefaultCommand(new MySpecialCommand());
+}
 
-struct Scores
+
+void initCamera()
 {
-	double rectangularity;
-	double aspectRatioVertical;
-	double aspectRatioHorizontal;
-};
-void Start()
+	 camera.GetImage(Image);
+}
+
+void particalAnalysis()
 {
-	void WriteResolution(int GetResolution());
-	void WriteMaxFPS(24);
-	int GetImage(ColorImage *image1);
 
 }
-void Stop()
-{
 
-
-
-}
-bool isHot()
-{
-
-	return isHot();
-}
 void VisionSubsystem::Reset()
 {
-
 
 }
