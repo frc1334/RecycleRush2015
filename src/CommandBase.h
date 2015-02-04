@@ -5,7 +5,6 @@
 #include "Subsystems/ElevatorSubsystem.h"
 #include "Subsystems/LimitswitchSubsystem.h"
 #include "Subsystems/PickupSubsystem.h"
-#include "Subsystems/VisionSubsystem.h"
 #include <string>
 #include "Commands/Command.h"
 #include "OI.h"
@@ -26,7 +25,6 @@ public:
 	static ElevatorSubsystem *elevatorSubsystem;
 	static PickupSubsystem *pickupSubsystem;
 	static LimitswitchSubsystem *limitswitchSubsystem;
-	static VisionSubsystem *visionSubsystem;
     static OI *oi;
 	static DriveSubsystem *driveSubsystem;
 };

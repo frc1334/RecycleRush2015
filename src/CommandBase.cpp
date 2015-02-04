@@ -2,7 +2,6 @@
 #include "Subsystems/ElevatorSubsystem.h"
 #include "Subsystems/LimitswitchSubsystem.h"
 #include "Subsystems/PickupSubsystem.h"
-#include "Subsystems/VisionSubsystem.h"
 #include "CommandBase.h"
 #include "Commands/Scheduler.h"
 
@@ -11,7 +10,6 @@ DriveSubsystem* CommandBase::driveSubsystem= NULL;
 ElevatorSubsystem* CommandBase::elevatorSubsystem= NULL;
 LimitswitchSubsystem* CommandBase::limitswitchSubsystem= NULL;
 PickupSubsystem* CommandBase::pickupSubsystem=NULL;
-VisionSubsystem* CommandBase::visionSubsystem=NULL;
 OI* CommandBase::oi = NULL;
 
 CommandBase::CommandBase(char const *name) :
@@ -36,6 +34,6 @@ void CommandBase::init()
 	elevatorSubsystem = new ElevatorSubsystem();
 	limitswitchSubsystem = new LimitswitchSubsystem();
 	pickupSubsystem = new PickupSubsystem();
-	visionSubsystem = new VisionSubsystem();
+
 
 }
