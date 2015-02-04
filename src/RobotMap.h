@@ -31,9 +31,6 @@ const int RIGHT2 = 4;
 
 
 const int CAMERA1 = 0;
-const int SESSION;
-const int FRAME;
-const int error;
 
 const int SHIFTSOLENOID = 1;
 
