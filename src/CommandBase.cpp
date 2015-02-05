@@ -2,6 +2,7 @@
 #include "Subsystems/ElevatorSubsystem.h"
 #include "Subsystems/LimitswitchSubsystem.h"
 #include "Subsystems/PickupSubsystem.h"
+#include "Subsystems/LiftSubsystem.h"
 #include "Subsystems/CameraSubsystem.h"
 #include "CommandBase.h"
 #include "Commands/Scheduler.h"
