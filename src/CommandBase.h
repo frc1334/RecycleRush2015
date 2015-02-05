@@ -5,6 +5,7 @@
 #include "Subsystems/ElevatorSubsystem.h"
 #include "Subsystems/LimitswitchSubsystem.h"
 #include "Subsystems/PickupSubsystem.h"
+#include "Subsystems/LiftSubsystem.h"
 #include <string>
 #include "Commands/Command.h"
 #include "OI.h"
