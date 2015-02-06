@@ -53,4 +53,10 @@ const int WHEELSOLENOIDLEFT = 0;
 const int WHEELSOLENOIDRIGHT = 0;
 // End pickup Subsystem
 
+// Start Lift subsystem
+
+const int LIFTMOTOR1 = 0;
+const int LIFTMOTOR2 = 0;
+
+// End Lift subsystem
 #endif
