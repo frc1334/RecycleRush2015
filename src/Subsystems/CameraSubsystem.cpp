@@ -7,7 +7,7 @@
 
 #include "CameraSubsystem.h"
 
-CameraSubsystem::CameraSubsystem() : Subsystem("CameraSubsystem")
+CameraSubsystem::CameraSubsystem() : Subsystem("CameraSubsystem"),tresholdImage("thresholdImage")
 {
 	struct Scores
 	{

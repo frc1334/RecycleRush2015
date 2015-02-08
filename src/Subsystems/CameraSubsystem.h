@@ -9,10 +9,16 @@
 
 class CameraSubsystem : public Subsystem
 {
-	Image *frame;
+	ColorImage *frame;
 	AxisCamera *camera;
+	BinaryImage *tresholdImage;
+	BinaryImage *convexHullImage = tresholdImage->ConvexHull(false);
+	BinaryImage *filteredImage = convexHullImage->ParticleFilter;
+	ParticleAnalysisReport *reports = filteredImage->GetParticleAnalysisReport(1);
+
 public:
 	CameraSubsystem();
+
 };
 
 #endif
