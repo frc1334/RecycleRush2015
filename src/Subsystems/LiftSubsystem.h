@@ -8,8 +8,10 @@
 class LiftSubsystem: public Subsystem
 {
 private:
+	DigitalInput limitSwitch;
+	Talon LiftMotor1,LiftMotor2;
+	Encoder beltEncoder;
 
-	Talon LiftMotor1, LiftMotor2;
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
