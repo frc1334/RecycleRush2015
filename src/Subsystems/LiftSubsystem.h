@@ -1,24 +1,25 @@
-#ifndef PICKUP_SUBSYSTEM_H
-#define PICKUP_SUBSYSTEM_H
+#ifndef LIFT_SUBSYSTEM_H
+#define LIFT_SUBSYSTEM_H
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 #include "../RobotMap.h"
 
-class PickupSubsystem: public Subsystem
+class LiftSubsystem: public Subsystem
 {
 private:
-
-	Talon BeltMotorLeft, BeltMotorRight;
-	Solenoid WheelSolenoidLeft, WheelSolenoidRight;
+	DigitalInput limitSwitch;
+	Talon LiftMotor1,LiftMotor2;
+	Encoder beltEncoder;
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
-	PickupSubsystem();
+	LiftSubsystem();
 	void InitDefaultCommand();
-	void Open(float Speed);
-	void Close(float Speed);
+	void Raise(float Speed);
+	void Lower(float Speed);
+	void OnRelease(float Speed);
 	void Reset();
 
 };
