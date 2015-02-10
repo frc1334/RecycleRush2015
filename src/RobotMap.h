@@ -27,10 +27,12 @@ const int LEFT1 = 1;
 const int LEFT2 = 2;
 const int RIGHT1 = 3;
 const int RIGHT2 = 4;
+const int ELEVATOR_LEFT = 5;
+const int ELEVATOR_RIGHT = 6;
 
 const int SHIFTSOLENOID = 1;
 
-const int ELEVATOR = 5;
+
 
 const int TIER1 = 0;
 const int TIER2 = 0;

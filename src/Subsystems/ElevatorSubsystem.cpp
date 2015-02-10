@@ -2,13 +2,14 @@
 #include "../RobotMap.h"
 
 ElevatorSubsystem::ElevatorSubsystem() :
-		Subsystem("ElevatorSubsystem"),Elevator(ELEVATOR)
+		Subsystem("ElevatorSubsystem"),left(ELEVATOR_LEFT),right(ELEVATOR_RIGHT)
 {
 
 }
 void ElevatorSubsystem::Lift(float speed)
 {
-	Elevator.Set(speed);
+	left.Set(speed);
+	right.Set(speed);
 }
 void ElevatorSubsystem::InitDefaultCommand()
 {

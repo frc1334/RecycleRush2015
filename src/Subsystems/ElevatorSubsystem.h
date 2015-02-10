@@ -8,7 +8,7 @@
 class ElevatorSubsystem: public Subsystem
 {
 private:
-	Talon Elevator;
+	Talon left,right;
 
 
 public:
