@@ -3,7 +3,6 @@
 
 #include "Subsystems/DriveSubsystem.h"
 #include "Subsystems/ElevatorSubsystem.h"
-#include "Subsystems/LimitswitchSubsystem.h"
 #include "Subsystems/PickupSubsystem.h"
 #include <string>
 #include "Commands/Command.h"
@@ -24,7 +23,7 @@ public:
 	// Create a single static instance of all of your subsystems
 	static ElevatorSubsystem *elevatorSubsystem;
 	static PickupSubsystem *pickupSubsystem;
-	static LimitswitchSubsystem *limitswitchSubsystem;
+
     static OI *oi;
 	static DriveSubsystem *driveSubsystem;
 };

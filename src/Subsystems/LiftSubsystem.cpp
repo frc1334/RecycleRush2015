@@ -4,9 +4,9 @@
 
 //Subsystem to move the elevator
 
-LiftSubsystem::LiftSubsystem()
+LiftSubsystem::LiftSubsystem() :Subsystem("LiftSubsystem"), LiftMotor1(ELEVATOR_LEFT), LiftMotor2(ELEVATOR_RIGHT)
 {
-	Subsystem("LiftSubsystem"), LiftMotor1(LIFTMOTOR1), LiftMotor2(LIFTMOTOR2)
+
 
 }
 

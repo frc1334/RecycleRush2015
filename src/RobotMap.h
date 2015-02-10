@@ -30,8 +30,12 @@ const int RIGHT2 = 4;
 const int ELEVATOR_LEFT = 5;
 const int ELEVATOR_RIGHT = 6;
 
-const int SHIFTSOLENOID = 1;
+const int BELTMOTORLEFT = 7;
+const int BELTMOTORRIGHT = 8;
 
+const int SHIFTSOLENOID = 1;
+const int WHEELSOLENOIDLEFT = 2;
+const int WHEELSOLENOIDRIGHT = 3;
 
 
 const int TIER1 = 0;

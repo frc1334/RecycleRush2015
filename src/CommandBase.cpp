@@ -1,6 +1,6 @@
 #include "Subsystems/DriveSubsystem.h"
 #include "Subsystems/ElevatorSubsystem.h"
-#include "Subsystems/LimitswitchSubsystem.h"
+
 #include "Subsystems/PickupSubsystem.h"
 
 #include "CommandBase.h"
@@ -9,7 +9,7 @@
 // Initialize a single static instance of all of your subsystems to NULL
 DriveSubsystem* CommandBase::driveSubsystem= NULL;
 ElevatorSubsystem* CommandBase::elevatorSubsystem= NULL;
-LimitswitchSubsystem* CommandBase::limitswitchSubsystem= NULL;
+
 PickupSubsystem* CommandBase::pickupSubsystem=NULL;
 OI* CommandBase::oi = NULL;
 
@@ -33,6 +33,6 @@ void CommandBase::init()
 	oi = new OI();
 	driveSubsystem = new DriveSubsystem();
 	elevatorSubsystem = new ElevatorSubsystem();
-	limitswitchSubsystem = new LimitswitchSubsystem();
+
 	pickupSubsystem = new PickupSubsystem();
 }
