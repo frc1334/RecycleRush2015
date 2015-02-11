@@ -23,27 +23,22 @@
 const int JOYSTICK_DRIVE = 0;
 const int JOYSTICK_OPERATOR = 1;
 
-const int LEFT1 = 1;
-const int LEFT2 = 2;
-const int RIGHT1 = 3;
-const int RIGHT2 = 4;
-const int ELEVATOR_LEFT = 5;
-const int ELEVATOR_RIGHT = 6;
+const int LEFT1 = 0;
+const int LEFT2 = 1;
+const int RIGHT1 = 2;
+const int RIGHT2 = 3;
+const int ELEVATOR_LEFT = 4;
+const int ELEVATOR_RIGHT = 5;
 
-const int BELTMOTORLEFT = 7;
-const int BELTMOTORRIGHT = 8;
+const int BELTMOTORLEFT = 6;
+const int BELTMOTORRIGHT = 7;
 
-const int SHIFTSOLENOID = 1;
-const int WHEELSOLENOIDLEFT = 2;
-const int WHEELSOLENOIDRIGHT = 3;
+const int WHEELSOLENOIDLEFT = 0;
+const int WHEELSOLENOIDRIGHT = 1;
 
+const int ELEVATOR_LIMITSWITCH_L = 0;
+const int ELEVATOR_LIMITSWITCH_R = 1;
 
-const int TIER1 = 0;
-const int TIER2 = 0;
-const int TIER3 = 0;
-const int TIER4 = 0;
-const int TIER5 = 0;
-const int TIER6 = 0;
-const int TIER7 = 0;
+// LAST EDITED - 11/02/2015
 
 #endif
