@@ -30,11 +30,10 @@ const int RIGHT2 = 3;
 const int ELEVATOR_LEFT = 4;
 const int ELEVATOR_RIGHT = 5;
 
-const int BELTMOTORLEFT = 6;
-const int BELTMOTORRIGHT = 7;
+const int INTAKE_MOTOR_LEFT = 6;
+const int INTAKE_MOTOR_RIGHT = 7;
 
-const int WHEELSOLENOIDLEFT = 0;
-const int WHEELSOLENOIDRIGHT = 1;
+const int INTAKE_SOLENOID = 0;
 
 const int ELEVATOR_LIMITSWITCH_L = 0;
 const int ELEVATOR_LIMITSWITCH_R = 1;

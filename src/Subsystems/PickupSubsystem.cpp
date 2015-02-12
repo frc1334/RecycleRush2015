@@ -5,7 +5,7 @@
 
 
 PickupSubsystem::PickupSubsystem() :
-		Subsystem("PickupSubsystem"), BeltMotorLeft(BELTMOTORLEFT), BeltMotorRight(BELTMOTORRIGHT),WheelSolenoidLeft(WHEELSOLENOIDLEFT), WheelSolenoidRight(WHEELSOLENOIDRIGHT)
+		Subsystem("PickupSubsystem"), intakeRight(INTAKE_MOTOR_RIGHT), intakeLeft(INTAKE_MOTOR_LEFT), intakeSolenoid(INTAKE_SOLENOID)
 {
 
 }
@@ -16,43 +16,17 @@ void PickupSubsystem::InitDefaultCommand()
 	//SetDefaultCommand(new MySpecialCommand());
 }
 
-
-	// For OI, have a button that when pressed, runs open, and when released, runs close?
-void PickupSubsystem::Open(float Speed){
-	Speed = 1;
-	//We haven't set delays on the pistons and motors
-	//Is this necessary?
-
-	if(WheelSolenoidLeft.Get() == false){
-	WheelSolenoidLeft.Set(true);
-	}
-	if(WheelSolenoidRight.Get() == false){
-	WheelSolenoidRight.Set(true);
-	}
-
-	BeltMotorLeft.Set(Speed);
-	BeltMotorRight.Set(Speed * -1);
-
-
-
+void PickupSubsystem::SetPosition(bool position)
+{
+	intakeSolenoid.Set(position);
 }
 
-void PickupSubsystem::Close(float Speed){
-	Speed = 0;
+void PickupSubsystem::Intake(float x, float y, float direction)
+{
 
-	if(WheelSolenoidLeft.Get() == true){
-		WheelSolenoidLeft.Set(false);
-		}
-		if(WheelSolenoidRight.Get() == true){
-		WheelSolenoidRight.Set(false);
-		}
-
-		BeltMotorLeft.Set(Speed);
-		BeltMotorRight.Set(Speed);
-
-
+	intakeRight.Set(y);
+	intakeLeft.Set(-y);
 }
-
 void PickupSubsystem::Reset()
 {
 }

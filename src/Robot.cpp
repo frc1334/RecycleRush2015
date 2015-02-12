@@ -3,6 +3,7 @@
 #include "Commands/Command.h"
 #include "Commands/ElevatorCommand.h"
 #include "Commands/AutonomousCommandGroup.h"
+#include "Commands/IntakeCommand.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
@@ -11,7 +12,7 @@ private:
 	CommandGroup *autonomousCommand;
 	Command *driveCommand;
 	Command *liftCommand;
-
+	Command *intakeCommand;
 	LiveWindow *lw;
 
 	void RobotInit()
@@ -20,6 +21,7 @@ private:
 		autonomousCommand = new AutonomousCommandGroup();
 		driveCommand = new DriveCommand();
 		liftCommand = new ElevatorCommand();
+		intakeCommand = new IntakeCommand();
 		lw = LiveWindow::GetInstance();
 	}
 	
@@ -49,7 +51,7 @@ private:
 			autonomousCommand->Cancel();
 		driveCommand->Start();
 		liftCommand->Start();
-
+		intakeCommand->Start();
 	}
 
 	void TeleopPeriodic()
