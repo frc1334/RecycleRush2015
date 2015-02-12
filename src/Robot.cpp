@@ -1,6 +1,7 @@
 #include "Commands/DriveCommand.h"
 #include "WPILib.h"
 #include "Commands/Command.h"
+#include "Commands/ElevatorCommand.h"
 #include "Commands/AutonomousCommandGroup.h"
 #include "CommandBase.h"
 
@@ -9,6 +10,7 @@ class Robot: public IterativeRobot
 private:
 	CommandGroup *autonomousCommand;
 	Command *driveCommand;
+	Command *liftCommand;
 
 	LiveWindow *lw;
 
@@ -17,7 +19,7 @@ private:
 		CommandBase::init();
 		autonomousCommand = new AutonomousCommandGroup();
 		driveCommand = new DriveCommand();
-
+		liftCommand = new ElevatorCommand();
 		lw = LiveWindow::GetInstance();
 	}
 	
@@ -46,7 +48,7 @@ private:
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
 		driveCommand->Start();
-
+		liftCommand->Start();
 
 	}
 

@@ -2,8 +2,7 @@
 #include "../RobotMap.h"
 
 DriveSubsystem::DriveSubsystem() :
-		Subsystem("DriveSubsystem"), DriveLeft1(LEFT1), DriveLeft2(LEFT2), DriveRight1(RIGHT1), DriveRight2(RIGHT2),
-		ShiftSolenoid(SHIFTSOLENOID)
+		Subsystem("DriveSubsystem"), DriveLeft1(LEFT1), DriveLeft2(LEFT2), DriveRight1(RIGHT1), DriveRight2(RIGHT2)
 {
 
 }
@@ -16,10 +15,10 @@ void DriveSubsystem::InitDefaultCommand()
 void DriveSubsystem::Drive(float speedLeft, float speedRight, float turn)
 {
 	float speed = (speedLeft *-1) + speedRight;
-	DriveLeft1.Set(turn + speed);
-	DriveLeft2.Set(turn + speed);
-	DriveRight1.Set(turn - speed);
-	DriveRight2.Set(turn - speed);
+	DriveLeft1.Set(-turn + speed);
+	DriveLeft2.Set(-turn - speed);
+	DriveRight1.Set(-turn + speed);
+	DriveRight2.Set(-turn - speed);
 }
 
 void DriveSubsystem::Drive(float speed, float turn)
@@ -31,10 +30,6 @@ void DriveSubsystem::Drive(float speed, float turn)
 	DriveRight2.Set(turn - speed);
 }
 
-void DriveSubsystem::SetShiftState(bool state)
-{
-	ShiftSolenoid.Set(state);
-}
 
 void DriveSubsystem::Reset()
 {

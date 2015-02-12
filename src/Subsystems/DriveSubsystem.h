@@ -13,7 +13,6 @@ private:
 
 	Talon DriveLeft1, DriveLeft2, DriveRight1, DriveRight2;
 
-	Solenoid ShiftSolenoid;
 public:
 	DriveSubsystem();
 	void InitDefaultCommand();
