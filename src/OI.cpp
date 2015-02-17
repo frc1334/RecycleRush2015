@@ -1,5 +1,6 @@
 #include "OI.h"
 #include "RobotMap.h"
+#include "Commands/IntakeToggleCommand.h"
 
 OI::OI()
 {
@@ -7,5 +8,4 @@ OI::OI()
 	Joystick_Drive = new Joystick(0);
 	Joystick_Operator = new Joystick(1);
 
-	buttonADrive = new JoystickButton(Joystick_Drive, 1);
 }

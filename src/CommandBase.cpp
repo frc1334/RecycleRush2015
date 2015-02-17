@@ -9,7 +9,6 @@
 // Initialize a single static instance of all of your subsystems to NULL
 DriveSubsystem* CommandBase::driveSubsystem= NULL;
 ElevatorSubsystem* CommandBase::elevatorSubsystem= NULL;
-
 PickupSubsystem* CommandBase::pickupSubsystem=NULL;
 OI* CommandBase::oi = NULL;
 

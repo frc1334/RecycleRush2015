@@ -5,21 +5,14 @@
 #include "RobotMap.h"
 #include <math.h>
 
+
 class OI
 {
 private:
 	Joystick *Joystick_Drive;
 	Joystick *Joystick_Operator;
 
-	JoystickButton *buttonADrive;
-	//JoystickButton *buttonBDrive;
-	//JoystickButton *buttonXDrive;
-	//JoystickButton *buttonYDrive;
 
-	//JoystickButton *buttonAOperator;
-	//JoystickButton *buttonBOperator;
-	//JoystickButton *buttonXOperator;
-	//JoystickButton *buttonYOperator;
 
 
 public:
@@ -28,9 +21,9 @@ public:
 	inline float GetDriveLeftTrigger() { return Joystick_Drive->GetRawAxis(2) *0.5; }
 	inline float GetDriveRightTrigger() { return Joystick_Drive->GetRawAxis(3) *0.5; }
 	inline float GetDriverIntakeDirection() { return -AddDeadZone(Joystick_Drive->GetRawAxis(4), 0.15f); }
-	inline float GetDriverIntakeFocus() { return AddDeadZone(Joystick_Drive->GetRawAxis(5), 0.15f); }
-
-	inline float GetOperatorElevator() { return -AddDeadZone(Joystick_Operator->GetRawAxis(5), 0.15f); }
+	inline float GetDriverIntakeSpeed() { return -AddDeadZone(Joystick_Drive->GetRawAxis(5), 0.15f); }
+	inline bool GetDriverIntakeToggle() { return Joystick_Drive->GetRawButton(1); }
+	inline float GetOperatorElevator() { return -AddDeadZone(Joystick_Operator->GetRawAxis(5), 0.25f); }
 
 	inline float AddDeadZone(float original, float deadzone)
 	{

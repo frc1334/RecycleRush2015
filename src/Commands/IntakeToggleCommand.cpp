@@ -1,40 +1,38 @@
-#include "IntakeCommand.h"
+#include "IntakeToggleCommand.h"
 
-IntakeCommand::IntakeCommand()
+IntakeToggleCommand::IntakeToggleCommand()
 {
 	Requires(pickupSubsystem);
 }
 
 // Called just before this Command runs the first time
-void IntakeCommand::Initialize()
+void IntakeToggleCommand::Initialize()
 {
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-void IntakeCommand::Execute()
+void IntakeToggleCommand::Execute()
 {
-		pickupSubsystem->Intake(oi->GetDriverIntakeDirection(), oi->GetDriverIntakeSpeed(), oi->GetDriverIntakeSpeed());
-		pickupSubsystem->intakeSolenoid.Set(oi->GetDriverIntakeToggle());
-
-
+	if(oi->GetDriverIntakeToggle())
+		pickupSubsystem->SetPosition(!oi->GetDriverIntakeToggle());
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool IntakeCommand::IsFinished()
+bool IntakeToggleCommand::IsFinished()
 {
 	return false;
 }
 
 // Called once after isFinished returns true
-void IntakeCommand::End()
+void IntakeToggleCommand::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void IntakeCommand::Interrupted()
+void IntakeToggleCommand::Interrupted()
 {
 
 }

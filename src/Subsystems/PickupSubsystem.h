@@ -10,11 +10,12 @@ class PickupSubsystem: public Subsystem
 private:
 
 	Talon intakeRight, intakeLeft;
-	Solenoid intakeSolenoid;
+
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
+	Solenoid intakeSolenoid;
 	PickupSubsystem();
 	void InitDefaultCommand();
 	void SetPosition(bool position);
