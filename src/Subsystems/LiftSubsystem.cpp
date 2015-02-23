@@ -4,9 +4,17 @@
 
 //Subsystem to move the elevator
 
-LiftSubsystem::LiftSubsystem() :Subsystem("LiftSubsystem"), LiftMotor1(ELEVATOR_LEFT), LiftMotor2(ELEVATOR_RIGHT)
+LiftSubsystem::LiftSubsystem() :Subsystem("LiftSubsystem"), LiftMotor1(ELEVATOR_LEFT), LiftMotor2(ELEVATOR_RIGHT),beltEncoder1(BELT_LEFT),beltEncoder2(BELT_RIGHT)
 {
-
+	beltEncoder1.SetMaxPeriod(.1);
+	beltEncoder2.SetMaxPeriod(.1);
+	beltEncoder1.SetMinRate(10);
+	beltEncoder2.SetMinRate(10);
+	beltEncoder1.SetDistancePerPulse(5);
+	beltEncoder2.SetDistancePerPulse(5);
+	beltEncoder2.SetReverseDirection(true);
+	beltEncoder1.SetSamplesToAverage(7);
+	beltEncoder2.SetSamplesToAverage(7);
 
 }
 

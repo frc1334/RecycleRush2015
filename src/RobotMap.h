@@ -38,6 +38,8 @@ const int INTAKE_SOLENOID = 0;
 const int ELEVATOR_LIMITSWITCH_L = 0;
 const int ELEVATOR_LIMITSWITCH_R = 1;
 
+const int BELT_LEFT = 0;
+const int BELT_RIGHT = 1;
 // LAST EDITED - 11/02/2015
 
 #endif
