@@ -23,6 +23,7 @@ private:
 		liftCommand = new ElevatorCommand();
 		intakeCommand = new IntakeCommand();
 		lw = LiveWindow::GetInstance();
+
 	}
 	
 	void DisabledPeriodic()
