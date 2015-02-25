@@ -2,7 +2,7 @@
 #define COMMAND_BASE_H
 
 #include "Subsystems/DriveSubsystem.h"
-#include "Subsystems/ElevatorSubsystem.h"
+#include "Subsystems/LiftSubsystem.h"
 #include "Subsystems/PickupSubsystem.h"
 #include <string>
 #include "Commands/Command.h"
@@ -21,7 +21,7 @@ public:
 	CommandBase();
 	static void init();
 	// Create a single static instance of all of your subsystems
-	static ElevatorSubsystem *elevatorSubsystem;
+	static LiftSubsystem *elevatorSubsystem;
 	static PickupSubsystem *pickupSubsystem;
 
     static OI *oi;

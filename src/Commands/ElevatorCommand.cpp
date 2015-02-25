@@ -17,7 +17,8 @@ void ElevatorCommand::Initialize()
 }
 void ElevatorCommand::Execute()
 {
-	elevatorSubsystem->Lift(oi->GetOperatorElevator());
+	elevatorSubsystem->UsePIDOutput(oi->GetOperatorElevator());
+
 }
 bool ElevatorCommand::IsFinished()
 {
