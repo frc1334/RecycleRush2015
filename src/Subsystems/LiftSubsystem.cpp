@@ -4,48 +4,38 @@
 
 //Subsystem to move the elevator
 
-LiftSubsystem::LiftSubsystem() :Subsystem("LiftSubsystem"), LiftMotor1(ELEVATOR_LEFT), LiftMotor2(ELEVATOR_RIGHT),beltEncoder1(BELT_LEFT),beltEncoder2(BELT_RIGHT)
+LiftSubsystem::LiftSubsystem() : PIDSubsystem("Elevator",p,i,d),
+LiftMotorL(ELEVATOR_LEFT), LiftMotorR(ELEVATOR_RIGHT)
 {
-	beltEncoder1.SetMaxPeriod(.1);
-	beltEncoder2.SetMaxPeriod(.1);
-	beltEncoder1.SetMinRate(10);
-	beltEncoder2.SetMinRate(10);
-	beltEncoder1.SetDistancePerPulse(5);
-	beltEncoder2.SetDistancePerPulse(5);
-	beltEncoder2.SetReverseDirection(true);
-	beltEncoder1.SetSamplesToAverage(7);
-	beltEncoder2.SetSamplesToAverage(7);
+	PIDSubsystem::SetAbsoluteTolerance(0.05f);
+	PIDSubsystem::GetPIDController()->SetContinuous(false);
 
+	beltEncoderL = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
+	beltEncoderL->SetMaxPeriod(.1);
+	beltEncoderL->SetMinRate(10);
+	beltEncoderL->SetDistancePerPulse(5);
+	beltEncoderL->SetSamplesToAverage(7);
+
+	beltEncoderR = new Encoder(2, 3, true, Encoder::EncodingType::k4X);
+	beltEncoderR->SetMaxPeriod(.1);
+	beltEncoderR->SetMinRate(10);
+	beltEncoderR->SetDistancePerPulse(5);
+	beltEncoderR->SetSamplesToAverage(7);
+
+}
+double LiftSubsystem::ReturnPIDInput()
+{
+	return beltEncoderL->PIDGet();
+}
+
+void LiftSubsystem::UsePIDOutput(double output)
+{
+	LiftMotorL.Set(output);
+	LiftMotorR.Set(-output);
 }
 
 void LiftSubsystem::InitDefaultCommand()
 {
-	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
-}
-
-//Raises the elevator (Maybe)
-void LiftSubsystem::Raise(float Speed)
-{
-	Speed = 1;
-LiftMotor1.Set(Speed);
-LiftMotor2.Set(Speed *-1);
-}
-
-//Lowers the elevator (Maybe)
-void LiftSubsystem::Lower(float Speed)
-{
-	Speed = -1;
-LiftMotor1.Set(Speed);
-LiftMotor2.Set(Speed *-1);
-}
-
-//Sets the elevator to stationary (For use on button release)
-void LiftSubsystem::OnRelease(float Speed)
-{
-	Speed = 0;
-LiftMotor1.Set(Speed);
-LiftMotor2.Set(Speed);
 
 }
 

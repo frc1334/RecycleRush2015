@@ -4,7 +4,6 @@
 #include "Commands/ElevatorCommand.h"
 #include "Commands/AutonomousCommandGroup.h"
 #include "Commands/IntakeCommand.h"
-#include "Commands/IntakeToggleCommand.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot

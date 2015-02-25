@@ -20,26 +20,32 @@
 //const int RANGE_FINDER_PORT = 1;
 //const int RANGE_FINDER_MODULE = 1;
 
+
+// Joysticks
 const int JOYSTICK_DRIVE = 0;
 const int JOYSTICK_OPERATOR = 1;
-
+// Motors
 const int LEFT1 = 0;
 const int LEFT2 = 1;
 const int RIGHT1 = 2;
 const int RIGHT2 = 3;
 const int ELEVATOR_LEFT = 4;
 const int ELEVATOR_RIGHT = 5;
-
 const int INTAKE_MOTOR_LEFT = 6;
 const int INTAKE_MOTOR_RIGHT = 7;
-
+// Solenoids
 const int INTAKE_SOLENOID = 0;
-
+// Digital Input
 const int ELEVATOR_LIMITSWITCH_L = 0;
 const int ELEVATOR_LIMITSWITCH_R = 1;
+// Encoders
+const int ENCODER_BELT_LEFT = 0;
+const int ENCODER_BELT_RIGHT = 1;
 
-const int BELT_LEFT = 0;
-const int BELT_RIGHT = 1;
-// LAST EDITED - 11/02/2015
+static const double ELEVATOR_BOTTOM = 0.0;
+static const double ELEVATOR_ONE_TOTE = 0.0;
+static const double ELEVATOR_DRIVING = 0.0;
+static const double ELEVATOR_PLACING = 0.0;
+// LAST EDITED - 25/02/2015
 
 #endif
