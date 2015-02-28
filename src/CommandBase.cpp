@@ -5,6 +5,7 @@
 DriveSubsystem* CommandBase::driveSubsystem= NULL;
 ElevatorSubsystem* CommandBase::elevatorSubsystem= NULL;
 PickupSubsystem* CommandBase::pickupSubsystem=NULL;
+LiftSubsystem* CommandBase::pidElevatorSubsystem=NULL;
 OI* CommandBase::oi = NULL;
 
 CommandBase::CommandBase(char const *name) :
@@ -27,6 +28,6 @@ void CommandBase::init()
 	oi = new OI();
 	driveSubsystem = new DriveSubsystem();
 	elevatorSubsystem = new ElevatorSubsystem();
-
+	pidElevatorSubsystem = new LiftSubsystem();
 	pickupSubsystem = new PickupSubsystem();
 }
