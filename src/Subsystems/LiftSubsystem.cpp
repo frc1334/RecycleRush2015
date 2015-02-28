@@ -4,8 +4,7 @@
 
 //Subsystem to move the elevator
 
-LiftSubsystem::LiftSubsystem() : PIDSubsystem("LiftSubsystem",p,i,d),
-LiftMotorL(ELEVATOR_LEFT), LiftMotorR(ELEVATOR_RIGHT)
+LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(ELEVATOR_LEFT), right(ELEVATOR_RIGHT)
 {
 	LiveWindow *lw = LiveWindow::GetInstance();
 	SetAbsoluteTolerance(0.05f);
@@ -29,13 +28,29 @@ LiftMotorL(ELEVATOR_LEFT), LiftMotorR(ELEVATOR_RIGHT)
 }
 double LiftSubsystem::ReturnPIDInput()
 {
-	return beltEncoderL->PIDGet();
+	cout << beltEncoderL->GetRaw();
+	return beltEncoderL->GetRaw();
 }
 
 void LiftSubsystem::UsePIDOutput(double output)
 {
-	LiftMotorL.Set(output);
-	LiftMotorR.Set(-output);
+	//cout << output << endl;
+	if(beltEncoderL->GetRate() > beltEncoderR->GetRate())
+	{
+		left.Set(output*.8);
+	}
+	if(beltEncoderR->GetRate() > beltEncoderL->GetRate())
+	{
+		right.Set(-output *0.8);
+	}
+	right.Set(-output);
+
+}
+
+void LiftSubsystem::Lift(float speed)
+{
+	left.Set(speed);
+	right.Set(-speed);
 }
 
 void LiftSubsystem::InitDefaultCommand()

@@ -12,9 +12,6 @@ private:
 	Joystick *Joystick_Drive;
 	Joystick *Joystick_Operator;
 
-
-
-
 public:
 	OI();
 	inline float GetDriveSteering() { return -AddDeadZone(Joystick_Drive->GetX(), 0.25f) * 0.5; }

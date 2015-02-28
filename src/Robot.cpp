@@ -5,6 +5,8 @@
 #include "Commands/AutonomousCommandGroup.h"
 #include "Commands/IntakeCommand.h"
 #include "CommandBase.h"
+#include <stdio.h>
+using namespace std;
 
 class Robot: public IterativeRobot
 {

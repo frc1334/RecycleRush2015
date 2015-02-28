@@ -22,7 +22,7 @@ public:
 	CommandBase();
 	static void init();
 	// Create a single static instance of all of your subsystems
-	static ElevatorSubsystem *elevatorSubsystem;
+	//static ElevatorSubsystem *elevatorSubsystem;
 	static PickupSubsystem *pickupSubsystem;
 	static LiftSubsystem *pidElevatorSubsystem;
     static OI *oi;

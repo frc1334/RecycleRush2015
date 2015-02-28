@@ -9,7 +9,7 @@
 
 ElevatorCommand::ElevatorCommand()
 {
-	Requires(elevatorSubsystem);
+	Requires(pidElevatorSubsystem);
 }
 void ElevatorCommand::Initialize()
 {
@@ -17,8 +17,9 @@ void ElevatorCommand::Initialize()
 }
 void ElevatorCommand::Execute()
 {
-	//elevatorSubsystem->UsePIDOutput(oi->GetOperatorElevator());
-	elevatorSubsystem->Lift(oi->GetOperatorElevator());
+	pidElevatorSubsystem->UsePIDOutput(oi->GetOperatorElevator());
+	//elevatorSubsystem->Lift(oi->GetOperatorElevator());
+	//pidElevatorSubsystem->Lift(oi->GetOperatorElevator());
 }
 bool ElevatorCommand::IsFinished()
 {
