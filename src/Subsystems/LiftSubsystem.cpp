@@ -7,41 +7,42 @@
 LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(ELEVATOR_LEFT), right(ELEVATOR_RIGHT)
 {
 	LiveWindow *lw = LiveWindow::GetInstance();
-	SetAbsoluteTolerance(0.05f);
-	GetPIDController()->SetContinuous(false);
+	SetAbsoluteTolerance(0.01f);
+	GetPIDController()->SetContinuous(true);
 
 	lw->AddActuator("LiftSubsystem", "PIDSubsystem Controller", GetPIDController());
 
 	beltEncoderL = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
-	beltEncoderL->SetMaxPeriod(.1);
+	beltEncoderL->SetMaxPeriod(.05);
 	beltEncoderL->SetMinRate(10);
-	beltEncoderL->SetDistancePerPulse(5);
+	beltEncoderL->SetDistancePerPulse(1);
 	beltEncoderL->SetSamplesToAverage(7);
 	beltEncoderL->SetPIDSourceParameter(Encoder::PIDSourceParameter::kDistance);
 
 	beltEncoderR = new Encoder(2, 3, true, Encoder::EncodingType::k4X);
-	beltEncoderR->SetMaxPeriod(.1);
+	beltEncoderR->SetMaxPeriod(.05);
 	beltEncoderR->SetMinRate(10);
-	beltEncoderR->SetDistancePerPulse(5);
+	beltEncoderR->SetDistancePerPulse(1);
 	beltEncoderR->SetSamplesToAverage(7);
 	beltEncoderR->SetPIDSourceParameter(Encoder::PIDSourceParameter::kDistance);
 }
 double LiftSubsystem::ReturnPIDInput()
 {
-	cout << beltEncoderL->GetRaw();
-	return beltEncoderL->GetRaw();
+
+	return beltEncoderR->GetRaw();
 }
 
 void LiftSubsystem::UsePIDOutput(double output)
 {
-	//cout << output << endl;
+
 	if(beltEncoderL->GetRate() > beltEncoderR->GetRate())
 	{
-		left.Set(output*.8);
+		left.Set(output*.9);
 	}
+	left.Set(output);
 	if(beltEncoderR->GetRate() > beltEncoderL->GetRate())
 	{
-		right.Set(-output *0.8);
+		right.Set(-output *0.9);
 	}
 	right.Set(-output);
 

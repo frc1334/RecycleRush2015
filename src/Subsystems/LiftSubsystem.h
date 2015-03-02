@@ -10,7 +10,7 @@ using namespace std;
 class LiftSubsystem: public PIDSubsystem
 {
 private:
-	double p = 1.0;
+	double p = 0.9;
 	double i = 0.1;
 	double d = 0.1;
 

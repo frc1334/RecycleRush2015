@@ -6,11 +6,11 @@ ElevatorSubsystem::ElevatorSubsystem() :
 {
 
 }
-void ElevatorSubsystem::Lift(float speed)
+/**void ElevatorSubsystem::Lift(float speed)
 {
 	left.Set(speed);
 	right.Set(-speed);
-}
+}*/
 void ElevatorSubsystem::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
