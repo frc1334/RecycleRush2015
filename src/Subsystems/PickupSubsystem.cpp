@@ -23,15 +23,25 @@ void PickupSubsystem::SetPosition(bool position)
 
 void PickupSubsystem::Intake(float x, float y, float direction)
 {
-	if(x < -0.25f && y > 0.25f)
-		intakeLeft.Set(y);
-	else if(x > 0.25f && y > 0.25f)
-		intakeRight.Set(-y);
-	else
+	if(y > 0.25 || y < -0.25){
+		if(x < -0.5f || x > 0.5){
+				intakeLeft.Set(x);
+				intakeRight.Set(x);
+		}
+		else{
+			intakeLeft.Set(-y);
+			intakeRight.Set(y);
+		}
+	}
+	else{
+			intakeLeft.Set(0);
+			intakeRight.Set(0);
+		}
+	/*else
 	{
 		intakeRight.Set(y);
 		intakeLeft.Set(-y);
-	}
+	}*/
 
 }
 void PickupSubsystem::Reset()

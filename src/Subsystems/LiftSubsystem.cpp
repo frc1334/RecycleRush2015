@@ -34,17 +34,28 @@ double LiftSubsystem::ReturnPIDInput()
 
 void LiftSubsystem::UsePIDOutput(double output)
 {
-
-	if(beltEncoderL->GetRate() > beltEncoderR->GetRate())
-	{
-		left.Set(output*.9);
-	}
 	left.Set(output);
-	if(beltEncoderR->GetRate() > beltEncoderL->GetRate())
-	{
-		right.Set(-output *0.9);
-	}
 	right.Set(-output);
+	double midpoint = beltEncoderL->GetRate() + beltEncoderR->GetRate();
+
+	// "Perfect" combo
+	if(midpoint <= 0.35 || midpoint >= -0.35)
+	{
+		left.Set(output);
+		right.Set(-output);
+	}
+	// Going Up
+	else if(beltEncoderL->GetRate() > -beltEncoderR->GetRate())
+	{
+		left.Set(output * 0.8);
+		right.Set(-output);
+	}
+	// Going Down
+	else if(beltEncoderR->GetRate() > -beltEncoderL->GetRate())
+	{
+		left.Set(output);
+		right.Set(-output * 0.8);
+	}
 
 }
 

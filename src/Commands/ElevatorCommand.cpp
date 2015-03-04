@@ -1,9 +1,3 @@
-/*
- * ElevatorCommand.cpp
- *
- *  Created on: Feb 9, 2015
- *      Author: p
- */
 
 #include "ElevatorCommand.h"
 

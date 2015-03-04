@@ -11,7 +11,7 @@ class LiftSubsystem: public PIDSubsystem
 {
 private:
 	double p = 0.9;
-	double i = 0.1;
+	double i = 0.2;
 	double d = 0.1;
 
 
