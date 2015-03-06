@@ -24,7 +24,7 @@ private:
 		driveCommand = new DriveCommand();
 		liftCommand = new ElevatorCommand();
 		intakeCommand = new IntakeCommand();
-		lw = LiveWindow::GetInstance();
+		//lw = LiveWindow::GetInstance();
 
 	}
 	

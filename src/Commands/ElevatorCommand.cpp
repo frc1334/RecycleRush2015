@@ -14,6 +14,8 @@ void ElevatorCommand::Execute()
 	pidElevatorSubsystem->UsePIDOutput(oi->GetOperatorElevator());
 	//elevatorSubsystem->Lift(oi->GetOperatorElevator());
 	//pidElevatorSubsystem->Lift(oi->GetOperatorElevator());
+	if(oi->GetOperatorMoveTotes())
+		pidElevatorSubsystem->SetSetpoint(1.0);
 }
 bool ElevatorCommand::IsFinished()
 {

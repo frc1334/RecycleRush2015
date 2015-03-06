@@ -10,15 +10,16 @@ using namespace std;
 class LiftSubsystem: public PIDSubsystem
 {
 private:
-	double p = 0.9;
-	double i = 0.2;
-	double d = 0.1;
+	double p = 1;
+	double i = 0.4;
+	double d = 0.0;
 
 
 	//DigitalInput limitSwitch;
 	Talon left,right;
 
 	Encoder *beltEncoderL,*beltEncoderR;
+	//DigitalInput *limitSwitchL, *limitSwitchR;
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities

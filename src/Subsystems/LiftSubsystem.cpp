@@ -28,16 +28,18 @@ LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(
 }
 double LiftSubsystem::ReturnPIDInput()
 {
-
-	return beltEncoderR->GetRaw();
+	return beltEncoderL->PIDGet();
 }
 
 void LiftSubsystem::UsePIDOutput(double output)
 {
+	double midpoint = beltEncoderL->GetRate() + beltEncoderR->GetRate();
 	left.Set(output);
 	right.Set(-output);
-	double midpoint = beltEncoderL->GetRate() + beltEncoderR->GetRate();
-
+	//if(limitSwitchL->Get())
+	//	beltEncoderL->Reset();
+	//if(limitSwitchR->Get())
+	//	beltEncoderR->Reset();
 	// "Perfect" combo
 	if(midpoint <= 0.35 || midpoint >= -0.35)
 	{

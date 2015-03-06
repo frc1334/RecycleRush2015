@@ -22,6 +22,8 @@ public:
 	inline bool GetDriverIntakeToggle() { return Joystick_Drive->GetRawButton(5); }
 
 	inline float GetOperatorElevator() { return AddDeadZone(Joystick_Operator->GetRawAxis(5), 0.20f); }
+	inline bool GetOperatorOneTote() { return Joystick_Operator->GetRawButton(1); }
+	inline bool GetOperatorMoveTotes() { return Joystick_Operator->GetRawButton(2); }
 
 	inline float AddDeadZone(float original, float deadzone)
 	{
