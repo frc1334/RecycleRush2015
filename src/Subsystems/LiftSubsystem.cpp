@@ -6,6 +6,9 @@
 
 LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(ELEVATOR_LEFT), right(ELEVATOR_RIGHT)
 {
+	limitSwitchL = new DigitalInput(4);
+	limitSwitchR = new DigitalInput(5);
+
 	LiveWindow *lw = LiveWindow::GetInstance();
 	SetAbsoluteTolerance(0.01f);
 	GetPIDController()->SetContinuous(true);
@@ -34,12 +37,21 @@ double LiftSubsystem::ReturnPIDInput()
 void LiftSubsystem::UsePIDOutput(double output)
 {
 	double midpoint = beltEncoderL->GetRate() + beltEncoderR->GetRate();
+
 	left.Set(output);
 	right.Set(-output);
-	//if(limitSwitchL->Get())
-	//	beltEncoderL->Reset();
-	//if(limitSwitchR->Get())
-	//	beltEncoderR->Reset();
+
+	if(limitSwitchL->Get())
+	{
+		beltEncoderL->Reset();
+		left.Set(0);
+	}
+	if(limitSwitchR->Get())
+	{
+		beltEncoderR->Reset();
+		right.Set(0);
+	}
+	/*
 	// "Perfect" combo
 	if(midpoint <= 0.35 || midpoint >= -0.35)
 	{
@@ -57,7 +69,7 @@ void LiftSubsystem::UsePIDOutput(double output)
 	{
 		left.Set(output);
 		right.Set(-output * 0.8);
-	}
+	}*/
 
 }
 

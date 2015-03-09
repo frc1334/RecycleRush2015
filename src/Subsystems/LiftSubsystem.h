@@ -19,7 +19,7 @@ private:
 	Talon left,right;
 
 	Encoder *beltEncoderL,*beltEncoderR;
-	//DigitalInput *limitSwitchL, *limitSwitchR;
+	DigitalInput *limitSwitchL, *limitSwitchR;
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
