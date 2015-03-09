@@ -6,8 +6,8 @@
 
 LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(ELEVATOR_LEFT), right(ELEVATOR_RIGHT)
 {
-	limitSwitchL = new DigitalInput(4);
-	limitSwitchR = new DigitalInput(5);
+	limitSwitchL = new DigitalInput(ELEVATOR_LIMITSWITCH_L);
+	limitSwitchR = new DigitalInput(ELEVATOR_LIMITSWITCH_R);
 
 	LiveWindow *lw = LiveWindow::GetInstance();
 	SetAbsoluteTolerance(0.01f);
@@ -15,14 +15,16 @@ LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(
 
 	lw->AddActuator("LiftSubsystem", "PIDSubsystem Controller", GetPIDController());
 
-	beltEncoderL = new Encoder(0, 1, false, Encoder::EncodingType::k4X);
+	beltEncoderL = new Encoder(ELEVATOR_ENCODER_L, ELEVATOR_ENCODER_L_B, false, Encoder::EncodingType::k4X);
+	beltEncoderL->Reset();
 	beltEncoderL->SetMaxPeriod(.05);
 	beltEncoderL->SetMinRate(10);
 	beltEncoderL->SetDistancePerPulse(1);
 	beltEncoderL->SetSamplesToAverage(7);
 	beltEncoderL->SetPIDSourceParameter(Encoder::PIDSourceParameter::kRate);
 
-	beltEncoderR = new Encoder(2, 3, true, Encoder::EncodingType::k4X);
+	beltEncoderR = new Encoder(ELEVATOR_ENCODER_R, ELEVATOR_ENCODER_R_B, true, Encoder::EncodingType::k4X);
+	beltEncoderR->Reset();
 	beltEncoderR->SetMaxPeriod(.05);
 	beltEncoderR->SetMinRate(10);
 	beltEncoderR->SetDistancePerPulse(1);
@@ -37,8 +39,12 @@ double LiftSubsystem::ReturnPIDInput()
 
 void LiftSubsystem::UsePIDOutput(double output)
 {
-	left.PIDWrite(output);
-	right.PIDWrite(-output);
+	if((limitSwitchL->Get() && limitSwitchR->Get())
+			|| (!limitSwitchL->Get() && !limitSwitchR->Get()))
+	{
+		left.PIDWrite(output);
+		right.PIDWrite(-output);
+	}
 
 	if(limitSwitchL->Get())
 	{
