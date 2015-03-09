@@ -20,63 +20,36 @@ LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(
 	beltEncoderL->SetMinRate(10);
 	beltEncoderL->SetDistancePerPulse(1);
 	beltEncoderL->SetSamplesToAverage(7);
-	beltEncoderL->SetPIDSourceParameter(Encoder::PIDSourceParameter::kDistance);
+	beltEncoderL->SetPIDSourceParameter(Encoder::PIDSourceParameter::kRate);
 
 	beltEncoderR = new Encoder(2, 3, true, Encoder::EncodingType::k4X);
 	beltEncoderR->SetMaxPeriod(.05);
 	beltEncoderR->SetMinRate(10);
 	beltEncoderR->SetDistancePerPulse(1);
 	beltEncoderR->SetSamplesToAverage(7);
-	beltEncoderR->SetPIDSourceParameter(Encoder::PIDSourceParameter::kDistance);
+	beltEncoderR->SetPIDSourceParameter(Encoder::PIDSourceParameter::kRate);
 }
 double LiftSubsystem::ReturnPIDInput()
 {
-	return beltEncoderL->PIDGet();
+	double midpoint = beltEncoderL->GetRate() - beltEncoderR->GetRate();
+	return midpoint;
 }
 
 void LiftSubsystem::UsePIDOutput(double output)
 {
-	double midpoint = beltEncoderL->GetRate() + beltEncoderR->GetRate();
-
-	left.Set(output);
-	right.Set(-output);
+	left.PIDWrite(output);
+	right.PIDWrite(-output);
 
 	if(limitSwitchL->Get())
 	{
 		beltEncoderL->Reset();
-		left.Set(0);
+		left.PIDWrite(0);
 	}
 	if(limitSwitchR->Get())
 	{
 		beltEncoderR->Reset();
-		right.Set(0);
+		right.PIDWrite(0);
 	}
-	/*
-	// "Perfect" combo
-	if(midpoint <= 0.35 || midpoint >= -0.35)
-	{
-		left.Set(output);
-		right.Set(-output);
-	}
-	// Going Up
-	else if(beltEncoderL->GetRate() > -beltEncoderR->GetRate())
-	{
-		left.Set(output * 0.8);
-		right.Set(-output);
-	}
-	// Going Down
-	else if(beltEncoderR->GetRate() > -beltEncoderL->GetRate())
-	{
-		left.Set(output);
-		right.Set(-output * 0.8);
-	}*/
-
-}
-
-void LiftSubsystem::Lift(float speed)
-{
-	left.Set(speed);
-	right.Set(-speed);
 }
 
 void LiftSubsystem::InitDefaultCommand()
