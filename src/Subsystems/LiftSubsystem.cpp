@@ -33,29 +33,29 @@ LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(
 }
 double LiftSubsystem::ReturnPIDInput()
 {
-	double midpoint = beltEncoderL->GetRate() - beltEncoderR->GetRate();
+	double midpoint = beltEncoderL->PIDGet() - beltEncoderR->PIDGet();
 	return midpoint;
 }
 
 void LiftSubsystem::UsePIDOutput(double output)
 {
-	if((limitSwitchL->Get() && limitSwitchR->Get())
-			|| (!limitSwitchL->Get() && !limitSwitchR->Get()))
-	{
+	//if((limitSwitchL->Get() && limitSwitchR->Get())
+	//		|| (!limitSwitchL->Get() && !limitSwitchR->Get()))
+	//{
 		left.PIDWrite(output);
 		right.PIDWrite(-output);
-	}
+	//}
 
-	if(limitSwitchL->Get())
+	/*if(limitSwitchL->Get())
 	{
-		beltEncoderL->Reset();
+	//	beltEncoderL->Reset();
 		left.PIDWrite(0);
 	}
 	if(limitSwitchR->Get())
 	{
-		beltEncoderR->Reset();
+	//	beltEncoderR->Reset();
 		right.PIDWrite(0);
-	}
+	}*/
 }
 
 void LiftSubsystem::InitDefaultCommand()
