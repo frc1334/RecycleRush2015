@@ -1,6 +1,6 @@
 #include "PickupSubsystem.h"
 #include "../RobotMap.h"
-
+#include <math.h>
 
 
 
@@ -23,14 +23,18 @@ void PickupSubsystem::SetPosition(bool position)
 
 void PickupSubsystem::Intake(float x, float y, float direction)
 {
+	float speed = sqrt((x*x) + (y*y));
+
+	//intakeLeft.Set(speed);
+	//intakeRight.Set(-speed);
 	if(y > 0.25 || y < -0.25){
 		if(x < -0.5f || x > 0.5){
 				intakeLeft.Set(x);
 				intakeRight.Set(x);
 		}
 		else{
-			intakeLeft.Set(-y);
-			intakeRight.Set(y);
+			intakeLeft.Set(y);
+			intakeRight.Set(-y);
 		}
 	}
 	else{

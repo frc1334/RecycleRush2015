@@ -40,8 +40,8 @@ const int ELEVATOR_ENCODER_L = 0;
 const int ELEVATOR_ENCODER_L_B = 1;
 const int ELEVATOR_ENCODER_R = 2;
 const int ELEVATOR_ENCODER_R_B = 3;
-const int ELEVATOR_LIMITSWITCH_L = 4;
-const int ELEVATOR_LIMITSWITCH_R = 5;
+const int ELEVATOR_LIMITSWITCH_L = 6;
+const int ELEVATOR_LIMITSWITCH_R = 7;
 // Encoders
 const int ENCODER_BELT_LEFT = 0;
 const int ENCODER_BELT_RIGHT = 1;

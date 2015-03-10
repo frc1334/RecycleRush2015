@@ -14,8 +14,6 @@ private:
 	double i = 0.4;
 	double d = 0.0;
 
-
-	//DigitalInput limitSwitch;
 	Talon left,right;
 
 	Encoder *beltEncoderL,*beltEncoderR;
