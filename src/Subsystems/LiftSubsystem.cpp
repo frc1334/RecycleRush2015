@@ -33,17 +33,14 @@ LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(
 }
 double LiftSubsystem::ReturnPIDInput()
 {
-	double midpoint = beltEncoderL->PIDGet() - beltEncoderR->PIDGet();
-	return midpoint;
+	return (beltEncoderL->PIDGet() + beltEncoderR->PIDGet())/2;
 }
 
 void LiftSubsystem::UsePIDOutput(double output)
 {
 	cout << "Left Limit Switch: " << limitSwitchL->Get() << endl;
 	cout << "Right Limit Switch: " << limitSwitchR->Get() << endl;
-	left.PIDWrite(output);
 	cout << output << endl;
-	right.PIDWrite(-output);
 	double leftOut;
 	double rightOut;
 	/*while((limitSwitchL->Get() && limitSwitchR->Get())
@@ -77,7 +74,7 @@ void LiftSubsystem::UsePIDOutput(double output)
 	else
 	{
 		leftOut = output;
-		rightOut = -output*percentage
+		rightOut = -output*percentage;
 	}
 
 	if(output > 0.25)
@@ -103,7 +100,7 @@ void LiftSubsystem::UsePIDOutput(double output)
 			else
 			{
 				right.Set(0);
-				beltEncoderR->Set();
+				beltEncoderR->Reset();
 			}
 
 		}
