@@ -4,7 +4,7 @@
 
 //Subsystem to move the elevator
 
-LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(ELEVATOR_LEFT), right(ELEVATOR_RIGHT)
+LiftSubsystem::LiftSubsystem() : PIDSubsystem("ElevatorSubsystem",p,i,d), left(ELEVATOR_LEFT), right(ELEVATOR_RIGHT)
 {
 	limitSwitchL = new DigitalInput(ELEVATOR_LIMITSWITCH_L);
 	limitSwitchR = new DigitalInput(ELEVATOR_LIMITSWITCH_R);
@@ -13,10 +13,9 @@ LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(
 	SetAbsoluteTolerance(0.01f);
 	GetPIDController()->SetContinuous(true);
 
-	lw->AddActuator("LiftSubsystem", "PIDSubsystem Controller", GetPIDController());
+	lw->AddActuator("ElevatorSubsystem", "PIDSubsystem Controller", GetPIDController());
 
 	beltEncoderL = new Encoder(ELEVATOR_ENCODER_L, ELEVATOR_ENCODER_L_B, false, Encoder::EncodingType::k4X);
-	beltEncoderL->Reset();
 	beltEncoderL->SetMaxPeriod(.05);
 	beltEncoderL->SetMinRate(10);
 	beltEncoderL->SetDistancePerPulse(1);
@@ -24,7 +23,6 @@ LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(
 	beltEncoderL->SetPIDSourceParameter(Encoder::PIDSourceParameter::kDistance);
 
 	beltEncoderR = new Encoder(ELEVATOR_ENCODER_R, ELEVATOR_ENCODER_R_B, true, Encoder::EncodingType::k4X);
-	beltEncoderR->Reset();
 	beltEncoderR->SetMaxPeriod(.05);
 	beltEncoderR->SetMinRate(10);
 	beltEncoderR->SetDistancePerPulse(1);
@@ -33,91 +31,50 @@ LiftSubsystem::LiftSubsystem() : PIDSubsystem("E2levatorSubsystem",p,i,d), left(
 }
 double LiftSubsystem::ReturnPIDInput()
 {
-	return (beltEncoderL->PIDGet() + beltEncoderR->PIDGet())/2;
+	return beltEncoderL->Get() - beltEncoderR->Get();
 }
+
 
 void LiftSubsystem::UsePIDOutput(double output)
 {
-	cout << "Left Limit Switch: " << limitSwitchL->Get() << endl;
-	cout << "Right Limit Switch: " << limitSwitchR->Get() << endl;
-	cout << output << endl;
-	double leftOut;
-	double rightOut;
-	/*while((limitSwitchL->Get() && limitSwitchR->Get())
-			|| (!limitSwitchL->Get() && !limitSwitchR->Get()))
-	{
-		if(limitSwitchL->Get() && limitSwitchR->Get())
-		{
-			beltEncoderL->Reset();
-			beltEncoderR->Reset();
-			//SetSetpoint(15);
-			cout << "Setpoint 15" << endl;;
-			//break;
-		}
-
-	}*/
-
-	/*if((limitSwitchL->Get() && lim8 itSwitchR->Get())
-			|| (!limitSwitchL->Get() && !limitSwitchR->Get()))
+	cout << "Left Encoder: " << beltEncoderL->Get() << endl;
+	cout << "Right Encoder: " << beltEncoderR->Get() << endl;
+	if(output < 0.25 || output > 0.25)
+			{
+				left.PIDWrite(output);
+				right.PIDWrite(-output);
+			}
+			else
+			{
+				left.StopMotor();
+				right.StopMotor();
+			}
+	if(limitSwitchL->Get() && limitSwitchR->Get())
 	{
 
+	}
+	else if(!limitSwitchL->Get() && !limitSwitchR->Get())
+	{
 		left.PIDWrite(output);
-		cout << output << endl;
 		right.PIDWrite(-output);
-	}*/
-	double percentage = .5;
-	if(beltEncoderL->GetRaw()*output > beltEncoderR->GetRaw()*output)
-	{
-		leftOut = output*percentage;
-		rightOut = -output;
 	}
-	else
+	else if(limitSwitchL->Get() && !limitSwitchR->Get())
 	{
-		leftOut = output;
-		rightOut = -output*percentage;
+		right.PIDWrite(-output);
+		left.StopMotor();
+		beltEncoderR->Reset();
 	}
+	else if(!limitSwitchL->Get() && limitSwitchR->Get())
 
-	if(output > 0.25)
 	{
-		if(limitSwitchL->Get())
-		{
-			beltEncoderL->Reset();
-			left.PIDWrite(0);
-			if(!limitSwitchR->Get())
-				right.Set(rightOut);
-			else
-			{
-				right.Set(0);
-				beltEncoderR->Reset();
-			}
+		left.PIDWrite(output);
+		right.StopMotor();
+		beltEncoderL->Reset();
 
-		}
-		else
-		{
-			left.Set(output);
-			if(!limitSwitchR->Get())
-				right.Set(leftOut);
-			else
-			{
-				right.Set(0);
-				beltEncoderR->Reset();
-			}
-
-		}
 
 	}
-	else if(output < -0.25)
-	{
-		right.Set(rightOut);
-		left.Set(leftOut);
-	}
-	else
-	{
-		right.Set(0);
-		left.Set(0);
-	}
-
 }
+
 
 void LiftSubsystem::InitDefaultCommand()
 {
