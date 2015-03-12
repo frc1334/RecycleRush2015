@@ -26,6 +26,7 @@ public:
 
 	void InitDefaultCommand();
 	double ReturnPIDInput();
+	bool GetLimitswitch(float speed);
 	void UsePIDOutput(double output);
 	void Lift(float speed);
 	void Reset();
