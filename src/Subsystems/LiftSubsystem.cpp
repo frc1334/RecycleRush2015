@@ -95,9 +95,9 @@ void LiftSubsystem::Lift(float speed)
 	float diffR = setpoint - beltEncoderR->GetDistance();
 	float diffL = setpoint - beltEncoderL->GetDistance();
 	std::cout << beltEncoderL->GetDistance() << "/" << setpoint << std::endl;
-	if (setpoint < beltEncoderL->GetDistance())
-		left.Set(diffL * 0.001f);
 	if (setpoint > beltEncoderL->GetDistance())
+		left.Set(diffL * 0.001f);
+	if (setpoint < beltEncoderL->GetDistance())
 		left.Set(-(diffL * 0.001f));
 	/*if (setpoint < beltEncoderR->GetDistance())
 		right.Set(-(diffR * 0.001f));
@@ -114,6 +114,7 @@ void LiftSubsystem::Lift(float speed)
 	{
 		right.StopMotor();
 		beltEncoderR->Reset();
+
 	}
 	// EVER
 }
