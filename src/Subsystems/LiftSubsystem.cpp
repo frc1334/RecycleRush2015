@@ -104,7 +104,7 @@ void LiftSubsystem::Lift(float speed)
 	if (setpoint > beltEncoderR->GetDistance())
 		right.Set(diffR * 0.001f);*/
 
-	// DO NOT COMMENT OUT
+	// DO NOT COMMENT OUT (Instructions unclear uncommented, comment)
 	if (limitSwitchL->Get())
 	{
 		left.StopMotor();
