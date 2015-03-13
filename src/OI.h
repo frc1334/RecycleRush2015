@@ -25,7 +25,7 @@ public:
 	inline bool GetOperatorOneTote() { return Joystick_Operator->GetRawButton(1); }
 	inline bool GetOperatorMoveTotes() { return Joystick_Operator->GetRawButton(2); }
 
-	inline float AddDeadZone(float original, float deadzone)
+	inline static float AddDeadZone(float original, float deadzone)
 	{
 		  return ((fabs(original) <= deadzone) ? 0 : original);
 	}

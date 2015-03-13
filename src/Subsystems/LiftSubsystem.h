@@ -7,12 +7,13 @@
 #include <stdio.h>
 using namespace std;
 
-class LiftSubsystem : public PIDSubsystem
+class LiftSubsystem : public Subsystem
 {
 private:
 	double p = 1.4;
 	double i = 0.4;
 	double d = 0.5;
+	float setpoint = 0;
 
 	Talon left, right;
 
