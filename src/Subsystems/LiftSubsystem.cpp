@@ -11,7 +11,6 @@ LiftSubsystem::LiftSubsystem() :
 	limitSwitchL = new DigitalInput(ELEVATOR_LIMITSWITCH_L);
 	limitSwitchR = new DigitalInput(ELEVATOR_LIMITSWITCH_R);
 
-	LiveWindow *lw = LiveWindow::GetInstance();
 	//SetAbsoluteTolerance(0.01f);
 	//GetPIDController()->SetContinuous(true);
 
@@ -33,10 +32,6 @@ LiftSubsystem::LiftSubsystem() :
 	beltEncoderR->SetDistancePerPulse(1);
 	beltEncoderR->SetSamplesToAverage(7);
 	//beltEncoderR->SetPIDSourceParameter(Encoder::PIDSourceParameter::kDistance);
-}
-double LiftSubsystem::ReturnPIDInput()
-{
-	return beltEncoderL->Get() - beltEncoderR->Get();
 }
 
 void LiftSubsystem::Lift(float speed)
@@ -94,11 +89,17 @@ void LiftSubsystem::Lift(float speed)
 	setpoint += speed;
 	float diffR = setpoint - beltEncoderR->GetDistance();
 	float diffL = setpoint - beltEncoderL->GetDistance();
-	std::cout << beltEncoderL->GetDistance() << "/" << setpoint << std::endl;
+	cout << "Left Encoder/setpoint" << beltEncoderL->GetDistance() << "/" << setpoint << endl;
+	cout << "Speed: " << speed << endl;
+	cout << "DiffR: " << diffR << endl;
+	cout << "DiffL: " << diffL << endl;
+	cout << "Left Set < beltL: " << -(diffL * 0.001f) << endl;
+	cout << "Left Set > beltL: " << (diffL * 0.001f) << endl;
+
 	if (setpoint > beltEncoderL->GetDistance())
 		left.Set(diffL * 0.001f);
 	if (setpoint < beltEncoderL->GetDistance())
-		left.Set(-(diffL * 0.001f));
+		left.Set((diffL * 0.001f));
 	/*if (setpoint < beltEncoderR->GetDistance())
 		right.Set(-(diffR * 0.001f));
 	if (setpoint > beltEncoderR->GetDistance())
