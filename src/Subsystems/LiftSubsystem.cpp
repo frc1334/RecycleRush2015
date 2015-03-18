@@ -34,144 +34,147 @@ LiftSubsystem::LiftSubsystem() :
 	//beltEncoderR->SetPIDSourceParameter(Encoder::PIDSourceParameter::kDistance);
 }
 
-void LiftSubsystem::Lift(float speed)
+void LiftSubsystem::ZeroLimitSwitch()
 {
+	cout << "L Limit Switch:" << limitSwitchL->Get() << endl;
+	cout << "R Limit Switch:" << limitSwitchR->Get() << endl;
+
+	// If the left encoder is 0 and the limit switch is not pressed - means that the elevator is not zeroed, so zero it
+	if (beltEncoderL->GetDistance() == 0 && limitSwitchL->Get())
+	{
+		cout << " Left Going Down" << beltEncoderL->GetDistance() << endl;
+		cout << "L Limit Switch:" << limitSwitchL->Get() << endl;
+		while (limitSwitchL->Get())
+		{
+			left.Set(-0.25f);
+			if (!limitSwitchL->Get())
+			{
+				left.Set(0);
+				beltEncoderL->Reset();
+				break;
+			}
+
+		}
+	}
+	// If the right encoder is 0 and the limit switch is not pressed - means that the elevator is not zeroed, so zero it
+	if (beltEncoderR->GetDistance() == 0 && limitSwitchR->Get())
+	{
+		cout << " Right Going Down" << beltEncoderR->GetDistance() << endl;
+		cout << "R Limit Switch:" << limitSwitchR->Get() << endl;
+		while (limitSwitchR->Get())
+		{
+			right.Set(0.25f);
+			if (!limitSwitchR->Get())
+			{
+				right.Set(0);
+				beltEncoderR->Reset();
+				break;
+			}
+		}
+
+	}
+	if (!limitSwitchL->Get() && !limitSwitchR->Get())
+	{
+		setpoint = 10;
+	}
+
+}
+
+void LiftSubsystem::Lift(float speed, float x)
+{
+	ZeroLimitSwitch();
 
 	float max = 1500;
-	int increment = -7;
-
-	if (speed == -1 || speed == 1 || speed == 0)
+	int increment = -4;
+	if (speed >= 0.25f)
 	{
-		setpoint += (speed * increment);
-		if (setpoint >= max)
-		{
-			setpoint = max;
-		}
-		if (setpoint < 0)
-		{
-			setpoint = 0;
-		}
-
+		speed = 1;
+	}
+	else if (speed <= -0.25f)
+	{
+		speed = -1;
 	}
 
+	if (x <= 0.5 && x >= -0.5)
+	{
+		if (speed == -1 || speed == 1 || speed == 0)
+		{
+			setpoint += (speed * increment);
+			if (setpoint >= max)
+			{
+				setpoint = max;
+			}
+			if (setpoint < 0)
+			{
+				setpoint = 0;
+			}
+
+		}
+	}
 	cout << "Setpoint " << setpoint << endl;
 	cout << "Left Encoder " << beltEncoderL->GetDistance() << endl;
-	/*
-	 bool lzero = false;
-	 bool rzero = false;
+	cout << "Right Encoder " << beltEncoderR->GetDistance() << endl;
 
-	 cout << "L Limit Switch:" << limitSwitchL->Get() << endl;
-	 cout << "R Limit Switch:" << limitSwitchR->Get() << endl;
-	 // If the right encoder is 0 and the limit switch is not pressed - means that the elevator is not zeroed, so zero it
-	 if (beltEncoderR->GetDistance() == 0 && limitSwitchR->Get())
-	 {
-	 cout << " Right Going Down" << beltEncoderR->GetDistance() << endl;
-	 cout << "R Limit Switch:" << limitSwitchR->Get() << endl;
-	 while (limitSwitchR->Get())
-	 {
-	 right.Set(0.25f);
-	 if (!limitSwitchR->Get())
-	 {
-	 rzero = true;
-	 beltEncoderR->Reset();
-	 break;
-	 }
-	 }
-	 if (rzero)
-	 {
-	 right.Set(0);
-	 rzero = false;
-	 }
-
-	 }
-	 // If the left encoder is 0 and the limit switch is not pressed - means that the elevator is not zeroed, so zero it
-	 if (beltEncoderL->GetDistance() == 0 && limitSwitchL->Get())
-	 {
-	 cout << " Left Going Down" << beltEncoderL->GetDistance() << endl;
-	 cout << "L Limit Switch:" << limitSwitchL->Get() << endl;
-	 while (limitSwitchL->Get())
-	 {
-	 left.Set(-0.25f);
-	 if (!limitSwitchL->Get())
-	 {
-	 lzero = true;
-	 beltEncoderL->Reset();
-	 break;
-	 }
-
-	 }
-	 if (lzero)
-	 {
-	 left.Set(0);
-	 lzero = false;
-	 }
-	 }*/
-
-	float diffR = setpoint - beltEncoderR->GetDistance();
-	float diffL = setpoint - beltEncoderL->GetDistance();
-
-	if ((beltEncoderR->GetDistance() <= (setpoint + 4) || beltEncoderR->GetDistance() >= (setpoint - 4)) && beltEncoderR->GetDistance() > 0)
+	if (beltEncoderR->GetDistance() < setpoint)
 	{
-		right.Set(-0.25f);
+		right.Set(-0.5);
 	}
-	else if ((beltEncoderL->GetDistance() <= (setpoint + 4) || beltEncoderL->GetDistance() >= (setpoint - 4)) && beltEncoderL->GetDistance() > 0)
+	if (beltEncoderL->GetDistance() < setpoint)
 	{
-		left.Set(0.25f);
+		left.Set(0.5);
 	}
 
-	if ((beltEncoderR->GetDistance() <= (setpoint + 4) || beltEncoderR->GetDistance() >= (setpoint - 4)) && beltEncoderR->GetDistance() > 0)
+	if (beltEncoderR->GetDistance() > setpoint)
 	{
-		right.Set(0.25f);
+		right.Set(0.5);
 	}
-	else if ((beltEncoderL->GetDistance() <= (setpoint + 4) || beltEncoderL->GetDistance() >= (setpoint - 4)) && beltEncoderL->GetDistance() > 0)
+	if (beltEncoderL->GetDistance() > setpoint)
 	{
-		left.Set(-0.25f);
+		left.Set(-0.5);
 	}
 
-	/*if(beltEncoderL->GetDistance() <= (setpoint + 4) && beltEncoderL->GetDistance() >= (setpoint - 4))
+	if (beltEncoderL->GetDistance() >= (setpoint - 4)
+			&& beltEncoderL->GetDistance() <= (setpoint + 4))
 	{
-		left.StopMotor();
+		left.Set(0);
 	}
-	if(beltEncoderR->GetDistance() <= (setpoint + 4) && beltEncoderR->GetDistance() >= (setpoint - 4))
+	if (beltEncoderR->GetDistance() >= (setpoint - 4)
+			&& beltEncoderR->GetDistance() <= (setpoint + 4))
 	{
-		right.StopMotor();
-	}*/
+		right.Set(0);
+	}
 
-	/*
-	 *
-	 if (setpoint > beltEncoderL->GetDistance())
-	 left.Set(diffL * 0.001f);
-	 if (setpoint < beltEncoderL->GetDistance())
-	 left.Set(-(diffL * 0.001f));
-	 if (setpoint > beltEncoderR->GetDistance())
-	 right.Set(-(diffR * 0.001f));
-	 if (setpoint < beltEncoderR->GetDistance())
-	 right.Set(diffR * 0.001f);
-	 */
 	// DO NOT COMMENT OUT (Instructions unclear uncommented, comment)
 	if (!limitSwitchL->Get())
 	{
+		beltEncoderL->Reset();
 		if (speed < 0)
-			left.StopMotor();
+		{
+			left.Set(0);
+		}
 		else
 		{
-			if (setpoint < beltEncoderL->GetDistance())
-				left.Set(diffL * 0.001f);
+			left.Set(speed);
 		}
-		beltEncoderL->Reset();
 
 	}
 	if (!limitSwitchR->Get())
 	{
+		beltEncoderR->Reset();
 		if (speed < 0)
-			right.StopMotor();
+		{
+			right.Set(0);
+		}
 		else
 		{
-			if (setpoint > beltEncoderR->GetDistance())
-				right.Set(-(diffR * 0.001f));
+			right.Set(-speed);
 		}
+	}
+	if (!limitSwitchR->Get() && !limitSwitchL->Get())
+	{
+		setpoint = 10;
 		beltEncoderR->Reset();
-
+		beltEncoderL->Reset();
 	}
 	// EVER
 }

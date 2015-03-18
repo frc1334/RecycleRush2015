@@ -10,27 +10,18 @@ using namespace std;
 class LiftSubsystem : public Subsystem
 {
 private:
-	double p = 1.4;
-	double i = 0.4;
-	double d = 0.5;
 	float setpoint = 0;
-
 	Talon left, right;
-
 	Encoder *beltEncoderL, *beltEncoderR;
 	DigitalInput *limitSwitchL, *limitSwitchR;
-
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
 	LiftSubsystem();
-
 	void InitDefaultCommand();
-	double ReturnPIDInput();
-	bool GetLimitswitch(float speed);
-	void UsePIDOutput(double output);
-	void Lift(float speed);
+	void Lift(float speed, float x);
 	void Reset();
+	void ZeroLimitSwitch();
 
 };
 
