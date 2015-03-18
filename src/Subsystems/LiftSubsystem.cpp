@@ -38,24 +38,6 @@ void LiftSubsystem::ZeroLimitSwitch()
 {
 	cout << "L Limit Switch:" << limitSwitchL->Get() << endl;
 	cout << "R Limit Switch:" << limitSwitchR->Get() << endl;
-
-	// If the left encoder is 0 and the limit switch is not pressed - means that the elevator is not zeroed, so zero it
-	if (beltEncoderL->GetDistance() == 0 && limitSwitchL->Get())
-	{
-		cout << " Left Going Down" << beltEncoderL->GetDistance() << endl;
-		cout << "L Limit Switch:" << limitSwitchL->Get() << endl;
-		while (limitSwitchL->Get())
-		{
-			left.Set(-0.25f);
-			if (!limitSwitchL->Get())
-			{
-				left.Set(0);
-				beltEncoderL->Reset();
-				break;
-			}
-
-		}
-	}
 	// If the right encoder is 0 and the limit switch is not pressed - means that the elevator is not zeroed, so zero it
 	if (beltEncoderR->GetDistance() == 0 && limitSwitchR->Get())
 	{
@@ -63,20 +45,40 @@ void LiftSubsystem::ZeroLimitSwitch()
 		cout << "R Limit Switch:" << limitSwitchR->Get() << endl;
 		while (limitSwitchR->Get())
 		{
-			right.Set(0.25f);
+			right.Set(1);
 			if (!limitSwitchR->Get())
 			{
 				right.Set(0);
 				beltEncoderR->Reset();
+				setpointR = 50;
 				break;
 			}
 		}
 
 	}
-	if (!limitSwitchL->Get() && !limitSwitchR->Get())
+	// If the left encoder is 0 and the limit switch is not pressed - means that the elevator is not zeroed, so zero it
+	if (beltEncoderL->GetDistance() == 0 && limitSwitchL->Get())
 	{
-		setpoint = 10;
+		cout << " Left Going Down" << beltEncoderL->GetDistance() << endl;
+		cout << "L Limit Switch:" << limitSwitchL->Get() << endl;
+		while (limitSwitchL->Get())
+		{
+			left.Set(-1);
+			if (!limitSwitchL->Get())
+			{
+				left.Set(0);
+				beltEncoderL->Reset();
+				setpointL = 50;
+				break;
+			}
+
+		}
 	}
+
+	/*if (!limitSwitchL->Get() && !limitSwitchR->Get())
+	 {
+	 setpoint = 10;
+	 }*/
 
 }
 
@@ -85,7 +87,7 @@ void LiftSubsystem::Lift(float speed, float x)
 	ZeroLimitSwitch();
 
 	float max = 1500;
-	int increment = -4;
+	int increment = -10;
 	if (speed >= 0.25f)
 	{
 		speed = 1;
@@ -99,47 +101,55 @@ void LiftSubsystem::Lift(float speed, float x)
 	{
 		if (speed == -1 || speed == 1 || speed == 0)
 		{
-			setpoint += (speed * increment);
-			if (setpoint >= max)
+			setpointL += (speed * increment);
+			setpointR += (speed * increment);
+
+			if (setpointL >= max)
 			{
-				setpoint = max;
+				setpointL = max;
 			}
-			if (setpoint < 0)
+			if (setpointL < 0)
 			{
-				setpoint = 0;
+				setpointL = 0;
+			}
+
+			if (setpointR >= max)
+			{
+				setpointR = max;
+			}
+			if (setpointR < 0)
+			{
+				setpointR = 0;
 			}
 
 		}
 	}
-	cout << "Setpoint " << setpoint << endl;
-	cout << "Left Encoder " << beltEncoderL->GetDistance() << endl;
-	cout << "Right Encoder " << beltEncoderR->GetDistance() << endl;
 
-	if (beltEncoderR->GetDistance() < setpoint)
+	if (beltEncoderR->GetDistance() < setpointR)
 	{
 		right.Set(-0.5);
 	}
-	if (beltEncoderL->GetDistance() < setpoint)
+	if (beltEncoderL->GetDistance() < setpointL)
 	{
 		left.Set(0.5);
 	}
 
-	if (beltEncoderR->GetDistance() > setpoint)
+	if (beltEncoderR->GetDistance() > setpointR)
 	{
 		right.Set(0.5);
 	}
-	if (beltEncoderL->GetDistance() > setpoint)
+	if (beltEncoderL->GetDistance() > setpointL)
 	{
 		left.Set(-0.5);
 	}
 
-	if (beltEncoderL->GetDistance() >= (setpoint - 4)
-			&& beltEncoderL->GetDistance() <= (setpoint + 4))
+	if (beltEncoderL->GetDistance() >= (setpointL - 4)
+			&& beltEncoderL->GetDistance() <= (setpointL + 4))
 	{
 		left.Set(0);
 	}
-	if (beltEncoderR->GetDistance() >= (setpoint - 4)
-			&& beltEncoderR->GetDistance() <= (setpoint + 4))
+	if (beltEncoderR->GetDistance() >= (setpointR - 4)
+			&& beltEncoderR->GetDistance() <= (setpointR + 4))
 	{
 		right.Set(0);
 	}
@@ -172,11 +182,15 @@ void LiftSubsystem::Lift(float speed, float x)
 	}
 	if (!limitSwitchR->Get() && !limitSwitchL->Get())
 	{
-		setpoint = 10;
+		right.Set(-1);
+		right.Set(1);
+		setpointR = 50;
+		setpointL = 50;
 		beltEncoderR->Reset();
 		beltEncoderL->Reset();
 	}
 	// EVER
+
 }
 
 void LiftSubsystem::InitDefaultCommand()

@@ -10,7 +10,8 @@ using namespace std;
 class LiftSubsystem : public Subsystem
 {
 private:
-	float setpoint = 0;
+	float setpointL = 0;
+	float setpointR = 0;
 	Talon left, right;
 	Encoder *beltEncoderL, *beltEncoderR;
 	DigitalInput *limitSwitchL, *limitSwitchR;
