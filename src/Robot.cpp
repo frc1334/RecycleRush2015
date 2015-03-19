@@ -3,6 +3,7 @@
 #include "Commands/Command.h"
 #include "Commands/ElevatorCommand.h"
 #include "Commands/AutonomousCommandGroup.h"
+#include "Commands/AutonomousFourBin.h"
 #include "Commands/IntakeCommand.h"
 #include "CommandBase.h"
 #include <stdio.h>
@@ -12,15 +13,23 @@ class Robot: public IterativeRobot
 {
 private:
 	CommandGroup *autonomousCommand;
+	CommandGroup *autonomousFourBin;
 	Command *driveCommand;
 	Command *liftCommand;
 	Command *intakeCommand;
 	LiveWindow *lw;
+	SendableChooser *autoMode;
 
 	void RobotInit()
 	{
 		CommandBase::init();
-		autonomousCommand = new AutonomousCommandGroup();
+		lw =LiveWindow::GetInstance();
+		autoMode = new SendableChooser();
+		autoMode->AddDefault("Default", new AutonomousCommandGroup());
+		autoMode->AddObject("Four Bin", new AutonomousFourBin());
+		//autonomousCommand = new AutonomousCommandGroup();
+		//autonomousFourBin = new AutonomousFourBin();
+		SmartDashboard::PutData("Autonomous Mode", autoMode);;
 		driveCommand = new DriveCommand();
 		liftCommand = new ElevatorCommand();
 		intakeCommand = new IntakeCommand();
