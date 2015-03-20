@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Robot: public IterativeRobot
+class Robot : public IterativeRobot
 {
 private:
 	CommandGroup *autonomousCommand;
@@ -41,7 +41,7 @@ private:
 		//lw = LiveWindow::GetInstance();
 
 	}
-	
+
 	void DisabledPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
@@ -66,6 +66,7 @@ private:
 		// this line or comment it out.
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
+
 		driveCommand->Start();
 		liftCommand->Start();
 		intakeCommand->Start();
