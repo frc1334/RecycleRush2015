@@ -129,7 +129,7 @@ void LiftSubsystem::Lift(float speed, float x)
 
 	cout << "Encoder R: " << beltEncoderR->GetDistance() << endl;
 	cout << "Encoder L: " << beltEncoderL->GetDistance() << endl;
-	float max = 1500;
+	float max = 2500;
 	int increment = -10;
 	if (speed >= 0.25f)
 	{
