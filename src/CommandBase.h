@@ -4,6 +4,7 @@
 #include "Subsystems/DriveSubsystem.h"
 #include "Subsystems/LiftSubsystem.h"
 #include "Subsystems/PickupSubsystem.h"
+#include "Subsystems/CanBurglerSubsystem.h"
 #include <string>
 #include "Commands/Command.h"
 #include "OI.h"
@@ -25,6 +26,7 @@ public:
 	static LiftSubsystem *pidElevatorSubsystem;
     static OI *oi;
 	static DriveSubsystem *driveSubsystem;
+	static CanBurglerSubsystem *canBurglerSubsystem;
 };
 
 #endif

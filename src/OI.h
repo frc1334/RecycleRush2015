@@ -25,6 +25,7 @@ public:
 	inline float GetOperatorElevatorX() { return AddDeadZone(Joystick_Operator->GetRawAxis(1), 0.20f); }
 	inline bool GetOperatorOneTote() { return Joystick_Operator->GetRawButton(1); }
 	inline bool GetOperatorMoveTotes() { return Joystick_Operator->GetRawButton(2); }
+	inline bool GetOperatorWinch(){ return Joystick_Operator->GetRawButton(4);}
 
 	inline static float AddDeadZone(float original, float deadzone)
 	{

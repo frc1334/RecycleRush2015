@@ -33,6 +33,7 @@ const int ELEVATOR_LEFT = 4;
 const int ELEVATOR_RIGHT = 5;
 const int INTAKE_MOTOR_LEFT = 6;
 const int INTAKE_MOTOR_RIGHT = 7;
+const int WINCH = 8;
 // Solenoids
 const int INTAKE_SOLENOID = 0;
 // Digital Input
