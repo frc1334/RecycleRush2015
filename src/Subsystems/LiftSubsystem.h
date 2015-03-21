@@ -21,9 +21,10 @@ public:
 	LiftSubsystem();
 	void InitDefaultCommand();
 	void Lift(float speed, float x);
+	void Lift(float speed);
 	void Reset();
 	void ZeroLimitSwitch();
-
+	void LimitSwitchSafety(float speed);
 };
 
 #endif

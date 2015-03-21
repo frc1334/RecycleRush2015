@@ -19,6 +19,7 @@ private:
 	// for methods that implement subsystem capabilities
 
 	Talon winch;
+	DigitalInput* winchstop;
 
 public:
 	CanBurglerSubsystem();

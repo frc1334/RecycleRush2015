@@ -16,8 +16,8 @@ void DriveSubsystem::Drive(float speedLeft, float speedRight, float turn)
 {
 	float speed = (speedLeft *-1) + speedRight;
 	DriveLeft1.Set(-turn + speed);
-	DriveLeft2.Set(-turn - speed);
-	DriveRight1.Set(-turn + speed);
+	DriveLeft2.Set(-turn + speed);
+	DriveRight1.Set(-turn - speed);
 	DriveRight2.Set(-turn - speed);
 }
 

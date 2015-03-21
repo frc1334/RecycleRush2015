@@ -6,18 +6,24 @@
 #include "Commands/AutonomousCommandGroup.h"
 #include "Commands/AutonomousFourBin.h"
 #include "Commands/IntakeCommand.h"
+#include "Commands/WinchCommand.h"
 #include "CommandBase.h"
 #include <stdio.h>
 
 using namespace std;
 
+<<<<<<< HEAD
 class CommandBasedRobot: public IterativeRobot
+=======
+class Robot : public IterativeRobot
+>>>>>>> origin/master
 {
 private:
 	CommandGroup *autonomousCommand;
 	CommandGroup *autonomousFourBin;
 	CommandGroup *magicalMysteryMode;
 	Command *driveCommand;
+	Command *winchCommand;
 	Command *liftCommand;
 	Command *intakeCommand;
 	LiveWindow *lw;
@@ -31,25 +37,35 @@ private:
 		autoMode->AddDefault("Default", new AutonomousCommandGroup());
 		autoMode->AddObject("Four Bin", new AutonomousFourBin());
 		autoMode->AddObject("MagicalMysteryMode(Get Scooby and the Gang)", new MagicalMysteryMode());
-		//autonomousCommand = new AutonomousCommandGroup();
+		autonomousCommand = new AutonomousCommandGroup();
 		//autonomousFourBin = new AutonomousFourBin();
 		SmartDashboard::PutData("Autonomous Mode", autoMode);;
 		driveCommand = new DriveCommand();
+		winchCommand= new WinchCommand();
 		liftCommand = new ElevatorCommand();
-
 		intakeCommand = new IntakeCommand();
+<<<<<<< HEAD
 		lw =LiveWindow::GetInstance();
 
 	}
 	
 	virtual void DisabledPeriodic()
+=======
+
+	}
+
+	void DisabledPeriodic()
+>>>>>>> origin/master
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
 	virtual void AutonomousInit()
 	{
+<<<<<<< HEAD
 			autonomousCommand= (CommandGroup*)autoMode->GetSelected();
+=======
+>>>>>>> origin/master
 			autonomousCommand->Start();
 	}
 
@@ -66,9 +82,11 @@ private:
 		// this line or comment it out.
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
+
 		driveCommand->Start();
 		liftCommand->Start();
 		intakeCommand->Start();
+		winchCommand->Start();
 
 	}
 
