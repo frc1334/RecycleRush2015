@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Robot: public IterativeRobot
+class CommandBasedRobot: public IterativeRobot
 {
 private:
 	CommandGroup *autonomousCommand;
@@ -23,10 +23,10 @@ private:
 	LiveWindow *lw;
 	SendableChooser *autoMode;
 
-	void RobotInit()
+	virtual void RobotInit()
 	{
 		CommandBase::init();
-		lw =LiveWindow::GetInstance();
+
 		autoMode = new SendableChooser();
 		autoMode->AddDefault("Default", new AutonomousCommandGroup());
 		autoMode->AddObject("Four Bin", new AutonomousFourBin());
@@ -38,27 +38,27 @@ private:
 		liftCommand = new ElevatorCommand();
 
 		intakeCommand = new IntakeCommand();
-		//lw = LiveWindow::GetInstance();
+		lw =LiveWindow::GetInstance();
 
 	}
 	
-	void DisabledPeriodic()
+	virtual void DisabledPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
-	void AutonomousInit()
+	virtual void AutonomousInit()
 	{
-		if (autonomousCommand != NULL)
+			autonomousCommand= (CommandGroup*)autoMode->GetSelected();
 			autonomousCommand->Start();
 	}
 
-	void AutonomousPeriodic()
+	virtual void AutonomousPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
-	void TeleopInit()
+	virtual void TeleopInit()
 	{
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to 
@@ -72,16 +72,16 @@ private:
 
 	}
 
-	void TeleopPeriodic()
+	virtual void TeleopPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
-	void TestPeriodic()
+	virtual void TestPeriodic()
 	{
 		//lw->Run();
 	}
 };
 
-START_ROBOT_CLASS(Robot);
+START_ROBOT_CLASS(CommandBasedRobot);
 
