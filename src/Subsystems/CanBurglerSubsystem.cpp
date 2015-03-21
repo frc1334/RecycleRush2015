@@ -10,6 +10,7 @@
 CanBurglerSubsystem::CanBurglerSubsystem():
 		Subsystem("CanBurglerSubsystem"),winch(WINCH)
 {
+	winchstop = new DigitalInput(WINCHSTOP);
 
 }
 
@@ -21,6 +22,10 @@ void CanBurglerSubsystem::InitDefaultCommand()
 void CanBurglerSubsystem::Winch(float speed)
 {
 	winch.Set(speed);
+	if(winchstop->Get())
+	{
+		winch.Set(0);
+	}
 }
 
 void CanBurglerSubsystem::Reset()

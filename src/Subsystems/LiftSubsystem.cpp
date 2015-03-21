@@ -129,6 +129,7 @@ void LiftSubsystem::Lift(float speed, float x)
 
 	cout << "Encoder R: " << beltEncoderR->GetDistance() << endl;
 	cout << "Encoder L: " << beltEncoderL->GetDistance() << endl;
+	float min = 50;
 	float max = 2500;
 	int increment = -10;
 	if (speed >= 0.25f)
@@ -151,6 +152,10 @@ void LiftSubsystem::Lift(float speed, float x)
 			{
 				setpointL = max;
 			}
+			if (setpointL <=min)
+			{
+				setpointL =min;
+			}
 			if (setpointL < 0)
 			{
 				setpointL = 0;
@@ -160,6 +165,10 @@ void LiftSubsystem::Lift(float speed, float x)
 			{
 				setpointR = max;
 			}
+			if (setpointR <=min)
+			{
+				setpointR =min;
+			}
 			if (setpointR < 0)
 			{
 				setpointR = 0;
@@ -167,24 +176,23 @@ void LiftSubsystem::Lift(float speed, float x)
 
 		}
 	}
+		if (beltEncoderR->GetDistance() < setpointR)
+		{
+			right.Set(-0.5f);
+		}
+		if (beltEncoderL->GetDistance() < setpointL)
+		{
+			left.Set(0.5f);
+		}
 
-	if (beltEncoderR->GetDistance() < setpointR)
-	{
-		right.Set(-0.5f);
-	}
-	if (beltEncoderL->GetDistance() < setpointL)
-	{
-		left.Set(0.5f);
-	}
-
-	if (beltEncoderR->GetDistance() > setpointR)
-	{
-		right.Set(0.5f);
-	}
-	if (beltEncoderL->GetDistance() > setpointL)
-	{
-		left.Set(-0.6f);
-	}
+		if (beltEncoderR->GetDistance() > setpointR)
+		{
+			right.Set(0.5f);
+		}
+		if (beltEncoderL->GetDistance() > setpointL)
+		{
+			left.Set(-0.6f);
+		}
 
 	if (beltEncoderL->GetDistance() >= (setpointL - 4)
 			&& beltEncoderL->GetDistance() <= (setpointL + 4))

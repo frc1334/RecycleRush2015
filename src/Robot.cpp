@@ -6,6 +6,7 @@
 #include "Commands/AutonomousCommandGroup.h"
 #include "Commands/AutonomousFourBin.h"
 #include "Commands/IntakeCommand.h"
+#include "Commands/WinchCommand.h"
 #include "CommandBase.h"
 #include <stdio.h>
 
@@ -18,6 +19,7 @@ private:
 	CommandGroup *autonomousFourBin;
 	CommandGroup *magicalMysteryMode;
 	Command *driveCommand;
+	Command *winchCommand;
 	Command *liftCommand;
 	Command *intakeCommand;
 	LiveWindow *lw;
@@ -31,14 +33,13 @@ private:
 		autoMode->AddDefault("Default", new AutonomousCommandGroup());
 		autoMode->AddObject("Four Bin", new AutonomousFourBin());
 		autoMode->AddObject("MagicalMysteryMode(Get Scooby and the Gang)", new MagicalMysteryMode());
-		//autonomousCommand = new AutonomousCommandGroup();
+		autonomousCommand = new AutonomousCommandGroup();
 		//autonomousFourBin = new AutonomousFourBin();
 		SmartDashboard::PutData("Autonomous Mode", autoMode);;
 		driveCommand = new DriveCommand();
+		winchCommand= new WinchCommand();
 		liftCommand = new ElevatorCommand();
-
 		intakeCommand = new IntakeCommand();
-		//lw = LiveWindow::GetInstance();
 
 	}
 
@@ -49,7 +50,6 @@ private:
 
 	void AutonomousInit()
 	{
-		if (autonomousCommand != NULL)
 			autonomousCommand->Start();
 	}
 
@@ -70,6 +70,7 @@ private:
 		driveCommand->Start();
 		liftCommand->Start();
 		intakeCommand->Start();
+		winchCommand->Start();
 
 	}
 

@@ -43,6 +43,7 @@ const int ELEVATOR_ENCODER_R = 2;
 const int ELEVATOR_ENCODER_R_B = 3;
 const int ELEVATOR_LIMITSWITCH_L = 4;
 const int ELEVATOR_LIMITSWITCH_R = 5;
+const int WINCHSTOP = 6;
 // Encoders
 const int ENCODER_BELT_LEFT = 0;
 const int ENCODER_BELT_RIGHT = 1;
