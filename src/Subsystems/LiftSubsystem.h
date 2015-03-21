@@ -10,8 +10,7 @@ using namespace std;
 class LiftSubsystem : public Subsystem
 {
 private:
-	float setpointL = 0;
-	float setpointR = 0;
+	float setpoint = 0;
 	Talon left, right;
 	Encoder *beltEncoderL, *beltEncoderR;
 	DigitalInput *limitSwitchL, *limitSwitchR;
@@ -20,11 +19,10 @@ private:
 public:
 	LiftSubsystem();
 	void InitDefaultCommand();
-	void Lift(float speed, float x);
+	void NSLift(float speed);
 	void Lift(float speed);
 	void Reset();
-	void ZeroLimitSwitch();
-	void LimitSwitchSafety(float speed);
+
 };
 
 #endif
