@@ -38,20 +38,52 @@ void LiftSubsystem::NSLift(float speed)
 {
 	left.Set(speed);
 	right.Set(-speed);
-	/*if(limitSwitchL->Get())
-	{
-		beltEncoderL->Get()=0;
-	}
-	if(limitSwitchR->Get())
-	{
-		beltEncoderR->Get()=0;
-	}*/
+
 }
 void LiftSubsystem::Lift(float speed)
 {
 	float max=2500;
 	float min=50;
-	setpoint+=speed;setpoint+=speed;
+	setpoint+=speed;
+	if(beltEncoderL->Get()<min)
+	{
+		setpoint=min;
+	}
+	if(beltEncoderL->Get()>max)
+	{
+		setpoint=max;
+	}
+
+	if(beltEncoderR->Get()<setpoint)
+	{
+		right.Set(-1);
+	}
+	if(beltEncoderL->Get()<setpoint)
+	{
+		left.Set(1);
+	}
+	if(beltEncoderR->Get()>setpoint)
+	{
+		right.Set(1);
+	}
+	if(beltEncoderL->Get()>setpoint)
+	{
+		left.Set(-1);
+	}
+	if(beltEncoderR->Get()==setpoint)
+	{
+		right.StopMotor();
+	}
+	if(beltEncoderL->Get()==setpoint)
+	{
+		left.StopMotor();
+	}
+}
+void LiftSubsystem::EZLift(float position)
+{
+	float max=2500;
+	float min=50;
+	setpoint+=position*200;
 	if(beltEncoderL->Get()<min)
 	{
 		setpoint=min;
