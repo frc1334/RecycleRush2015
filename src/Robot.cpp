@@ -52,7 +52,7 @@ private:
 
 	virtual void AutonomousInit()
 	{
-		autonomousCommand=autoMode;
+		autonomousCommand=(CommandGroup*)autoMode->GetSelected();
 			autonomousCommand->Start();
 	}
 

@@ -60,11 +60,11 @@ void LiftSubsystem::Lift(float speed)
 	}
 	if(beltEncoderL->Get()<setpoint)
 	{
-		left.Set(1);
+		left.Set(-1);
 	}
 	if(beltEncoderR->Get()>setpoint)
 	{
-		right.Set(1);
+		right.Set(-1);
 	}
 	if(beltEncoderL->Get()>setpoint)
 	{
