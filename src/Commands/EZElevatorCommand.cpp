@@ -18,8 +18,8 @@ void EZElevatorCommand::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void EZElevatorCommand::Execute()
 {
-	pidElevatorSubsystem->EZLift(oi->GetOperatorEZElevatorRB());
-	pidElevatorSubsystem->EZLift(oi->GetOperatorEZElevatorLB());
+	//pidElevatorSubsystem->EZLift(oi->GetOperatorEZElevatorRB());
+	//pidElevatorSubsystem->EZLift(oi->GetOperatorEZElevatorLB());
 
 }
 

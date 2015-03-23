@@ -14,7 +14,7 @@ void AutonomousZeroCommand::Initialize()
 }
 void AutonomousZeroCommand::Execute()
 {
-	pidElevatorSubsystem->NSLift(-1);
+	//pidElevatorSubsystem->NSLift(-1);
 }
 bool AutonomousZeroCommand::IsFinished()
 {
@@ -22,7 +22,7 @@ bool AutonomousZeroCommand::IsFinished()
 }
 void AutonomousZeroCommand::End()
 {
-	pidElevatorSubsystem->NSLift(0);
+	//pidElevatorSubsystem->NSLift(0);
 	pidElevatorSubsystem->Reset();
 }
 

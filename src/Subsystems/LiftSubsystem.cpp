@@ -34,14 +34,16 @@ LiftSubsystem::LiftSubsystem() :
 	//beltEncoderR->SetPIDSourceParameter(Encoder::PIDSourceParameter::kDistance);
 }
 
-void LiftSubsystem::NSLift(float speed)
+/*void LiftSubsystem::NSLift(float speed)
 {
 	left.Set(speed);
 	right.Set(-speed);
 
-}
-void LiftSubsystem::Lift(float speed)
+}*/
+/*void LiftSubsystem::Lift(float speed)
 {
+	beltEncoderL->Reset();
+	beltEncoderR->Reset();
 	float max=2500;
 	float min=50;
 	setpoint+=speed;
@@ -49,7 +51,15 @@ void LiftSubsystem::Lift(float speed)
 	{
 		setpoint=min;
 	}
+	if(beltEncoderR->Get()<min)
+	{
+		setpoint=min;
+	}
 	if(beltEncoderL->Get()>max)
+	{
+		setpoint=max;
+	}
+	if(beltEncoderR->Get()>max)
 	{
 		setpoint=max;
 	}
@@ -60,7 +70,7 @@ void LiftSubsystem::Lift(float speed)
 	}
 	if(beltEncoderL->Get()<setpoint)
 	{
-		left.Set(-1);
+		left.Set(1);
 	}
 	if(beltEncoderR->Get()>setpoint)
 	{
@@ -68,7 +78,7 @@ void LiftSubsystem::Lift(float speed)
 	}
 	if(beltEncoderL->Get()>setpoint)
 	{
-		left.Set(-1);
+		left.Set(1);
 	}
 	if(beltEncoderR->Get()==setpoint)
 	{
@@ -78,8 +88,63 @@ void LiftSubsystem::Lift(float speed)
 	{
 		left.StopMotor();
 	}
+}*/
+void LiftSubsystem::Lift(float speed)
+{
+	beltEncoderL->Reset();
+	beltEncoderR->Reset();
+	float basespeedLeft=-(speed*.86);
+	float basespeedRight=speed;
+	//float ifValue2=speed*.95;
+	left.Set(basespeedLeft);
+	right.Set(basespeedRight);
+	if(limitSwitchL->Get()==0)
+	{
+		if(speed<0)
+		{
+			beltEncoderL->Reset();
+			left.StopMotor();
+
+		}
+	}
+	if(limitSwitchR->Get()==0)
+	{
+		if(speed<0)
+		{
+			right.StopMotor();
+			beltEncoderR->Reset();
+		}
+	}
+
+
+	if(speed<0 && beltEncoderL->GetDistance()<beltEncoderR->GetDistance())
+	{
+		left.Set(basespeedLeft*.25);
+	}
+	if(speed<0 && beltEncoderL->GetDistance()>beltEncoderR->GetDistance())
+		{
+			right.Set(basespeedRight*.25);
+		}
+	if(speed>0 && beltEncoderL->GetDistance()<beltEncoderR->GetDistance())
+		{
+			right.Set(basespeedRight*.25);
+		}
+	if(speed>0 && beltEncoderL->GetDistance()>beltEncoderR->GetDistance())
+		{
+				left.Set(basespeedLeft*.25);
+		}
+	std::cout<<"BeltEncoderR RAW:"<<beltEncoderL->GetRaw()<<endl;
+	std::cout<<"BeltEncoderL RAW: "<<beltEncoderR->GetRaw()<<endl;
+	std::cout<<"BeltEncoderR DISTANCE:"<<beltEncoderL->GetDistance()<<endl;
+	std::cout<<"BeltEncoderL DISTANCE: "<<beltEncoderR->GetDistance()<<endl;
+	std::cout<<"BeltEncoderR:"<<beltEncoderL->Get()<<endl;
+	std::cout<<"BeltEncoderL: "<<beltEncoderR->Get()<<endl;
+	/*if(beltEncoderL->Get()>beltEncoderR->Get())
+	{
+		left.Set(ifValue2);
+	}*/
 }
-void LiftSubsystem::EZLift(float position)
+/*void LiftSubsystem::EZLift(float position)
 {
 	float max=2500;
 	float min=50;
@@ -118,7 +183,7 @@ void LiftSubsystem::EZLift(float position)
 		left.StopMotor();
 	}
 }
-
+*/
 void LiftSubsystem::InitDefaultCommand()
 {
 }
