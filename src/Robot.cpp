@@ -2,6 +2,7 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "Commands/ElevatorCommand.h"
+#include "Commands/EZElevatorCommand.h"
 #include "Commands/MagicalMysteryMode.h"
 #include "Commands/AutonomousCommandGroup.h"
 #include "Commands/AutonomousFourBin.h"
@@ -12,7 +13,7 @@
 
 using namespace std;
 
-class Robot : public IterativeRobot
+class CommandBasedRobot : public IterativeRobot
 {
 private:
 	CommandGroup *autonomousCommand;
@@ -22,10 +23,11 @@ private:
 	Command *winchCommand;
 	Command *liftCommand;
 	Command *intakeCommand;
+	Command *EZelevatorCommand;
 	LiveWindow *lw;
 	SendableChooser *autoMode;
 
-	void RobotInit()
+	virtual void RobotInit()
 	{
 		CommandBase::init();
 		lw =LiveWindow::GetInstance();
@@ -43,22 +45,23 @@ private:
 
 	}
 
-	void DisabledPeriodic()
+	virtual void DisabledPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
-	void AutonomousInit()
+	virtual void AutonomousInit()
 	{
+		autonomousCommand=autoMode;
 			autonomousCommand->Start();
 	}
 
-	void AutonomousPeriodic()
+	virtual void AutonomousPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
-	void TeleopInit()
+	virtual void TeleopInit()
 	{
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to 
@@ -74,16 +77,16 @@ private:
 
 	}
 
-	void TeleopPeriodic()
+	virtual void TeleopPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
-	void TestPeriodic()
+	virtual void TestPeriodic()
 	{
 		//lw->Run();
 	}
 };
 
-START_ROBOT_CLASS(Robot);
+START_ROBOT_CLASS(CommandBasedRobot);
 
