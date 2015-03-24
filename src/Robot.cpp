@@ -12,11 +12,7 @@
 
 using namespace std;
 
-<<<<<<< HEAD
 class CommandBasedRobot: public IterativeRobot
-=======
-class Robot : public IterativeRobot
->>>>>>> origin/master
 {
 private:
 	CommandGroup *autonomousCommand;
@@ -44,29 +40,19 @@ private:
 		winchCommand= new WinchCommand();
 		liftCommand = new ElevatorCommand();
 		intakeCommand = new IntakeCommand();
-<<<<<<< HEAD
 		lw =LiveWindow::GetInstance();
 
 	}
 	
 	virtual void DisabledPeriodic()
-=======
-
-	}
-
-	void DisabledPeriodic()
->>>>>>> origin/master
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
 	virtual void AutonomousInit()
 	{
-<<<<<<< HEAD
-			autonomousCommand= (CommandGroup*)autoMode->GetSelected();
-=======
->>>>>>> origin/master
-			autonomousCommand->Start();
+		autonomousCommand=(CommandGroup*)autoMode->GetSelected();
+		autonomousCommand->Start();
 	}
 
 	virtual void AutonomousPeriodic()

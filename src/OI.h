@@ -23,6 +23,8 @@ public:
 
 	inline float GetOperatorElevator() { return AddDeadZone(Joystick_Operator->GetRawAxis(5), 0.20f); }
 	inline float GetOperatorElevatorX() { return AddDeadZone(Joystick_Operator->GetRawAxis(1), 0.20f); }
+	inline bool GetOperatorEZElevatorRB() { return Joystick_Operator->GetRawButton(6); }
+	inline bool GetOperatorEZElevatorLB() { return (!Joystick_Operator->GetRawButton(5)); }
 	inline bool GetOperatorOneTote() { return Joystick_Operator->GetRawButton(1); }
 	inline bool GetOperatorMoveTotes() { return Joystick_Operator->GetRawButton(2); }
 	inline bool GetOperatorWinch(){ return Joystick_Operator->GetRawButton(4);}
