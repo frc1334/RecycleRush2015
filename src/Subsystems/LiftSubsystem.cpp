@@ -36,84 +36,120 @@ LiftSubsystem::LiftSubsystem() :
 
 void LiftSubsystem::NSLift(float speed)
 {
+	//Lift system used to just do it with no encoder values
 	left.Set(speed);
 	right.Set(-speed);
 
 }
 void LiftSubsystem::Lift(float speed)
 {
-	float max=2500;
-	float min=50;
-	setpoint+=speed;
-	if(beltEncoderL->Get()<min)
+	float max = 2500; //the max setpoint
+	float min = 50; //the min set point
+	setpoint += speed;
+	//start of max/min checking
+	if (beltEncoderL->Get() < min)
 	{
-		setpoint=min;
+		setpoint = min;
 	}
-	if(beltEncoderL->Get()>max)
+	if (beltEncoderL->Get() < min)
 	{
-		setpoint=max;
+		setpoint = min;
 	}
+	if (beltEncoderL->Get() > max)
+	{
+		setpoint = max;
+	}
+	if (beltEncoderR->Get() > max)
+	{
+		setpoint = max;
+	}
+	//end of max/main checking
 
-	if(beltEncoderR->Get()<setpoint)
+	//start of checking if you are at setpoint
+	if (beltEncoderR->Get() < setpoint)
 	{
 		right.Set(-1);
 	}
-	if(beltEncoderL->Get()<setpoint)
-	{
-		left.Set(-1);
-	}
-	if(beltEncoderR->Get()>setpoint)
-	{
-		right.Set(-1);
-	}
-	if(beltEncoderL->Get()>setpoint)
-	{
-		left.Set(-1);
-	}
-	if(beltEncoderR->Get()==setpoint)
-	{
-		right.StopMotor();
-	}
-	if(beltEncoderL->Get()==setpoint)
-	{
-		left.StopMotor();
-	}
-}
-void LiftSubsystem::EZLift(float position)
-{
-	float max=2500;
-	float min=50;
-	setpoint+=position*200;
-	if(beltEncoderL->Get()<min)
-	{
-		setpoint=min;
-	}
-	if(beltEncoderL->Get()>max)
-	{
-		setpoint=max;
-	}
-
-	if(beltEncoderR->Get()<setpoint)
-	{
-		right.Set(-1);
-	}
-	if(beltEncoderL->Get()<setpoint)
+	if (beltEncoderL->Get() < setpoint)
 	{
 		left.Set(1);
 	}
-	if(beltEncoderR->Get()>setpoint)
+	if (beltEncoderR->Get() > setpoint)
 	{
 		right.Set(1);
 	}
-	if(beltEncoderL->Get()>setpoint)
+	if (beltEncoderL->Get() > setpoint)
 	{
 		left.Set(-1);
 	}
-	if(beltEncoderR->Get()==setpoint)
+	if (beltEncoderR->Get() == setpoint)
 	{
 		right.StopMotor();
 	}
-	if(beltEncoderL->Get()==setpoint)
+	if (beltEncoderL->Get() == setpoint)
+	{
+		left.StopMotor();
+	}
+	//end of checking if you are at setpoint
+
+	//limit switch checking
+	if (limitSwitchL->Get() == 0 && speed < 0) //if the limit switched is pressed and speed is less then 0 then stop motor
+	{
+		left.StopMotor();
+	}
+	if (limitSwitchR->Get() == 0 && speed < 0)
+	{
+		right.StopMotor();
+	}
+	//end of limitswitch checking
+}
+void LiftSubsystem::EZLift(float position)
+{
+	//when pressed setpoint is increased by 200 or -200 or 1 tote level
+	float max = 2500;
+	float min = 50;
+	setpoint += position * 200;
+	//start of max/min checking
+	if (beltEncoderL->Get() < min)
+	{
+		setpoint = min;
+	}
+	if (beltEncoderL->Get() < min)
+	{
+		setpoint = min;
+	}
+	if (beltEncoderL->Get() > max)
+	{
+		setpoint = max;
+	}
+	if (beltEncoderR->Get() > max)
+	{
+		setpoint = max;
+	}
+	//end of max/main checking
+
+	//start of checking if you are at setpoint
+	if (beltEncoderR->Get() < setpoint)
+	{
+		right.Set(-1);
+	}
+	if (beltEncoderL->Get() < setpoint)
+	{
+		left.Set(1);
+	}
+	if (beltEncoderR->Get() > setpoint)
+	{
+		right.Set(1);
+	}
+	if (beltEncoderL->Get() > setpoint)
+	{
+		left.Set(-1);
+	}
+	if (beltEncoderR->Get() == setpoint)
+	{
+		right.StopMotor();
+	}
+	if (beltEncoderL->Get() == setpoint)
 	{
 		left.StopMotor();
 	}
