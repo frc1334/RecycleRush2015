@@ -2,7 +2,6 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "Commands/ElevatorCommand.h"
-#include "Commands/EZElevatorCommand.h"
 #include "Commands/MagicalMysteryMode.h"
 #include "Commands/AutonomousCommandGroup.h"
 #include "Commands/AutonomousFourBin.h"
@@ -23,7 +22,6 @@ private:
 	Command *winchCommand;
 	Command *liftCommand;
 	Command *intakeCommand;
-	Command *EZelevatorCommand;
 	LiveWindow *lw;
 	SendableChooser *autoMode;
 

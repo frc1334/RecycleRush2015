@@ -17,7 +17,7 @@ LiftSubsystem::LiftSubsystem() :
 	/*lw->AddActuator("ElevatorSubsystem", "PIDSubsystem Controller",
 	 GetPIDController());*/
 
-	beltEncoderL = new Encoder(ELEVATOR_ENCODER_L, ELEVATOR_ENCODER_L_B, false,
+	beltEncoderL = new Encoder(ELEVATOR_ENCODER_L, ELEVATOR_ENCODER_L_B, true,
 			Encoder::EncodingType::k4X);
 	beltEncoderL->SetMaxPeriod(.05);
 	beltEncoderL->SetMinRate(10);
@@ -39,71 +39,83 @@ void LiftSubsystem::NSLift(float speed)
 	//Lift system used to just do it with no encoder values
 	left.Set(speed);
 	right.Set(-speed);
-
 }
+
 void LiftSubsystem::Lift(float speed)
 {
+	const float P = 0.015f;
 	float max = 2500; //the max setpoint
-	float min = 50; //the min set point
-	setpoint += speed;
+	float min = 0; //the min set point
+	setpointR += -speed * 17;
+	setpointL += -speed * 17;
 	//start of max/min checking
-	if (beltEncoderL->Get() < min)
+	/*if (setpoint < min)
 	{
 		setpoint = min;
-	}
-	if (beltEncoderL->Get() < min)
+	}*/
+
+	if (setpointR > max)
 	{
-		setpoint = min;
+		setpointR = max;
 	}
-	if (beltEncoderL->Get() > max)
+	if (setpointL > max)
 	{
-		setpoint = max;
-	}
-	if (beltEncoderR->Get() > max)
-	{
-		setpoint = max;
+		setpointL = max;
 	}
 	//end of max/main checking
 
 	//start of checking if you are at setpoint
-	if (beltEncoderR->Get() < setpoint)
+	if (beltEncoderR->Get() < setpointR)
 	{
-		right.Set(-1);
+		right.Set(-fabs(beltEncoderR->Get() - setpointR) * P);
 	}
-	if (beltEncoderL->Get() < setpoint)
+	if (beltEncoderL->Get() < setpointL)
 	{
-		left.Set(1);
+		left.Set(fabs(beltEncoderL->Get() - setpointL) * P);
 	}
-	if (beltEncoderR->Get() > setpoint)
+	if (beltEncoderR->Get() > setpointR)
 	{
-		right.Set(1);
+		right.Set(fabs(beltEncoderR->Get() - setpointR) * P);
 	}
-	if (beltEncoderL->Get() > setpoint)
+	if (beltEncoderL->Get() > setpointL)
 	{
-		left.Set(-1);
+		left.Set(-fabs(beltEncoderL->Get() - setpointL) * P);
 	}
-	if (beltEncoderR->Get() == setpoint)
+	if (OI::AddDeadZone(beltEncoderR->Get() - setpointR, 10) == 0)
 	{
-		right.StopMotor();
+		right.Set(0);
 	}
-	if (beltEncoderL->Get() == setpoint)
+	if (OI::AddDeadZone(beltEncoderL->Get() - setpointL, 10) == 0)
 	{
-		left.StopMotor();
+		left.Set(0);
 	}
 	//end of checking if you are at setpoint
 
 	//limit switch checking
-	if (limitSwitchL->Get() == 0 && speed < 0) //if the limit switched is pressed and speed is less then 0 then stop motor
+	if (!limitSwitchL->Get() && left.Get() <= 0) //if the limit switched is pressed and speed is less then 0 then stop motor
 	{
-		left.StopMotor();
+		left.Set(0);
+		beltEncoderL->Reset();
+		setpointL = 0;
 	}
-	if (limitSwitchR->Get() == 0 && speed < 0)
+	if (!limitSwitchR->Get() && -right.Get() <= 0)
 	{
-		right.StopMotor();
+		right.Set(0);
+		beltEncoderR->Reset();
+		setpointR = 0;
 	}
 	//end of limitswitch checking
+	std::cout << "L:" << beltEncoderL->Get() << std::endl;
+	std::cout << "R:" << beltEncoderR->Get() << std::endl;
+	std::cout << "SetpointR:" << setpointR <<  std::endl;
+	std::cout << "SetpointL:" << setpointL <<  std::endl;
+	cout << "Left Motor" << left.Get() << endl;
+	cout << "Right Motor" << right.Get() << endl;
+	std::cout << "Limit L:" << !limitSwitchL->Get() <<  std::endl;
+	std::cout << "Limit R:" << !limitSwitchR->Get() <<  std::endl;
 }
-void LiftSubsystem::EZLift(float position)
+
+/*void LiftSubsystem::EZLift(float position)
 {
 	//when pressed setpoint is increased by 200 or -200 or 1 tote level
 	float max = 2500;
@@ -153,7 +165,7 @@ void LiftSubsystem::EZLift(float position)
 	{
 		left.StopMotor();
 	}
-}
+}*/
 
 void LiftSubsystem::InitDefaultCommand()
 {
