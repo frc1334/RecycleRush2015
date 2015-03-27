@@ -4,7 +4,7 @@
 #include "Commands/ElevatorCommand.h"
 #include "Commands/MagicalMysteryMode.h"
 #include "Commands/AutonomousCommandGroup.h"
-#include "Commands/AutonomousShortCommand.h"
+//#include "Commands/AutonomousShortCommand.h"
 #include "Commands/AutonomousFourBin.h"
 #include "Commands/IntakeCommand.h"
 #include "Commands/WinchCommand.h"
@@ -19,7 +19,7 @@ private:
 	CommandGroup *autonomousCommand;
 	CommandGroup *autonomousFourBin;
 	CommandGroup *magicalMysteryMode;
-	CommandGroup *autonomousShortCommand;
+	//CommandGroup *autonomousShortCommand;
 	Command *driveCommand;
 	Command *winchCommand;
 	Command *liftCommand;
@@ -33,7 +33,7 @@ private:
 		lw =LiveWindow::GetInstance();
 		autoMode = new SendableChooser();
 		autoMode->AddDefault("Default", new AutonomousCommandGroup());
-		autoMode->AddDefault("Autonomous Siena(short)", new AutonomousShortCommand());
+		//autoMode->AddDefault("Autonomous Siena(short)", new AutonomousShortCommand());
 		autoMode->AddObject("Four Bin", new AutonomousFourBin());
 		autoMode->AddObject("MagicalMysteryMode(Get Scooby and the Gang)", new MagicalMysteryMode());
 		//autonomousCommand = new AutonomousCommandGroup();
@@ -54,7 +54,7 @@ private:
 
 	virtual void AutonomousInit()
 	{
-		autonomousCommand=(Command*)autoMode->GetSelected();
+		//autonomousCommand=(Command*)autoMode->GetSelected();
 		autonomousCommand->Start();
 	}
 

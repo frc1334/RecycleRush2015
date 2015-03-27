@@ -2,6 +2,7 @@
 #include "../RobotMap.h"
 #include "../OI.h"
 
+using namespace std;
 //Subsystem to move the elevator
 
 LiftSubsystem::LiftSubsystem() :
@@ -52,7 +53,7 @@ void LiftSubsystem::Lift(float speed)
 	float max = 2500; //the max setpoint
 	float min = 0; //the min set point
 	setpointR += -speed * 17;
-	setpointL += speed * 17;
+	setpointL += -speed * 17;
 	//start of max/min checking
 	/*if (setpoint < min)
 	{
@@ -110,14 +111,14 @@ void LiftSubsystem::Lift(float speed)
 		setpointR = 0;
 	}
 	//end of limitswitch checking
-	cout << "L:" << beltEncoderL->Get() << endl;
-	cout << "R:" << beltEncoderR->Get() << endl;
-	cout << "SetpointR:" << setpointR <<  endl;
-	cout << "SetpointL:" << setpointL <<  endl;
-	cout << "Left Motor" << left.Get() << endl;
-	cout << "Right Motor" << right.Get() << endl;
-	cout << "Limit L:" << !limitSwitchL->Get() <<  endl;
-	cout << "Limit R:" << !limitSwitchR->Get() <<  endl;
+	cout << "L:" << beltEncoderL->GetDistance() << endl;
+	cout << "R:" << beltEncoderR->GetDistance() << endl;
+	//cout << "SetpointR:" << setpointR <<  endl;
+	//cout << "SetpointL:" << setpointL <<  endl;
+	//cout << "Left Motor" << left.Get() << endl;
+	//cout << "Right Motor" << right.Get() << endl;
+	//cout << "Limit L:" << !limitSwitchL->Get() <<  endl;
+	//cout << "Limit R:" << !limitSwitchR->Get() <<  endl;
 }
 
 
