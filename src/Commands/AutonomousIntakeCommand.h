@@ -8,9 +8,10 @@ private:
 	Timer delay;
 	double seconds;
 	float x,y;
+	bool open;
 
 public:
-	AutonomousIntakeCommand(double seconds, float x, float y);
+	AutonomousIntakeCommand(double seconds, float x, float y, bool open);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

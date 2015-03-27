@@ -93,8 +93,8 @@ void LiftSubsystem::Lift(float speed)
 {
 	beltEncoderL->Reset();
 	beltEncoderR->Reset();
-	float basespeedLeft = -(speed * .89);
-	float basespeedRight = speed;
+	float basespeedLeft = -(speed * 0.82);
+	float basespeedRight = speed * .82;
 	//float ifValue2=speed*.95;
 	left.Set(basespeedLeft);
 	right.Set(basespeedRight);
