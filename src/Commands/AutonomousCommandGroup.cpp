@@ -1,6 +1,7 @@
 
 #include "AutonomousCommandGroup.h"
 #include "AutonomousDriveCommand.h"
+#include "AutonomousIntakeCommand.h"
 #include "../RobotMap.h"
 
 AutonomousCommandGroup::AutonomousCommandGroup()

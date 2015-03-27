@@ -1,7 +1,7 @@
 
 #include "AutonomousIntakeCommand.h"
 
-AutonomousIntakeCommand::AutonomousIntakeCommand(double seconds, float x, float y)
+AutonomousIntakeCommand::AutonomousIntakeCommand(double seconds, float x, float y, bool open)
 	: delay(), seconds(seconds), x(x), y(y), open(open)
 {
 	Requires(pickupSubsystem);

@@ -20,7 +20,7 @@ public:
 	LiftSubsystem();
 	void InitDefaultCommand();
 	//void EZLift(float speed);
-	void NSLift(float speed);
+	void SetPosition(float setpointL, float setpointR);
 	void Lift(float position);
 	void Reset();
 
