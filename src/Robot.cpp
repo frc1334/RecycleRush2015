@@ -4,7 +4,6 @@
 #include "Commands/ElevatorCommand.h"
 #include "Commands/MagicalMysteryMode.h"
 #include "Commands/AutonomousCommandGroup.h"
-//#include "Commands/AutonomousShortCommand.h"
 #include "Commands/AutonomousFourBin.h"
 #include "Commands/IntakeCommand.h"
 #include "Commands/WinchCommand.h"
@@ -19,7 +18,6 @@ private:
 	CommandGroup *autonomousCommand;
 	CommandGroup *autonomousFourBin;
 	CommandGroup *magicalMysteryMode;
-	//CommandGroup *autonomousShortCommand;
 	Command *driveCommand;
 	Command *winchCommand;
 	Command *liftCommand;
@@ -30,20 +28,20 @@ private:
 	virtual void RobotInit()
 	{
 		CommandBase::init();
-		lw =LiveWindow::GetInstance();
+
 		autoMode = new SendableChooser();
 		autoMode->AddDefault("Default", new AutonomousCommandGroup());
-		//autoMode->AddDefault("Autonomous Siena(short)", new AutonomousShortCommand());
+
 		autoMode->AddObject("Four Bin", new AutonomousFourBin());
 		autoMode->AddObject("MagicalMysteryMode(Get Scooby and the Gang)", new MagicalMysteryMode());
-		//autonomousCommand = new AutonomousCommandGroup();
+		autonomousCommand = new AutonomousCommandGroup();
 		//autonomousFourBin = new AutonomousFourBin();
 		SmartDashboard::PutData("Autonomous Mode", autoMode);;
 		driveCommand = new DriveCommand();
 		winchCommand= new WinchCommand();
 		liftCommand = new ElevatorCommand();
 		intakeCommand = new IntakeCommand();
-
+		lw =LiveWindow::GetInstance();
 
 	}
 	
@@ -54,7 +52,6 @@ private:
 
 	virtual void AutonomousInit()
 	{
-		//autonomousCommand=(Command*)autoMode->GetSelected();
 		autonomousCommand->Start();
 	}
 
