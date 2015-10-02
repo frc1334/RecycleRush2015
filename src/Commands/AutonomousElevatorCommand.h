@@ -1,4 +1,3 @@
-
 #ifndef AUTONOMOUSELEVATORCOMMAND_H
 #define AUTONOMOUSELEVATORCOMMAND_H
 #include "../CommandBase.h"
@@ -6,7 +5,6 @@
 class AutonomousElevatorCommand : public CommandBase
 {
 private:
-
 
 public:
 	AutonomousElevatorCommand();

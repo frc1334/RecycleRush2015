@@ -4,7 +4,7 @@
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class WinchCommand: public CommandBase
+class WinchCommand : public CommandBase
 {
 private:
 

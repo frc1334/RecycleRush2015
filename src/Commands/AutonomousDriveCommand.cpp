@@ -1,8 +1,8 @@
-
 #include "AutonomousDriveCommand.h"
 
-AutonomousDriveCommand::AutonomousDriveCommand(double seconds, float speed, float turn)
-	: delay(), seconds(seconds), speed(speed), turn(turn)
+AutonomousDriveCommand::AutonomousDriveCommand(double seconds, float speed,
+		float turn) :
+		delay(), seconds(seconds), speed(speed), turn(turn)
 {
 	Requires(driveSubsystem);
 }

@@ -1,10 +1,9 @@
-
 #include "AutonomousElevatorCommand.h"
 
 /*AutonomousElevatorCommand::AutonomousElevatorCommand()
-{
-	Requires(pidElevatorSubsystem);
-}*/
+ {
+ Requires(pidElevatorSubsystem);
+ }*/
 
 void AutonomousElevatorCommand::Execute()
 {

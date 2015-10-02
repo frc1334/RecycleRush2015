@@ -4,7 +4,7 @@
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class DriveCommand: public CommandBase
+class DriveCommand : public CommandBase
 {
 private:
 	bool shiftUp, shiftDown;

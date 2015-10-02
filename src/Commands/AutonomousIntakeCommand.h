@@ -7,9 +7,8 @@ class AutonomousIntakeCommand : public CommandBase
 private:
 	Timer delay;
 	double seconds;
-	float x,y;
+	float x, y;
 	bool open;
-
 
 public:
 	AutonomousIntakeCommand(double seconds, float x, float y, bool open);
@@ -19,6 +18,5 @@ public:
 	virtual void End();
 	virtual void Interrupted();
 };
-
 
 #endif

@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class CommandBasedRobot: public IterativeRobot
+class CommandBasedRobot : public IterativeRobot
 {
 private:
 	CommandGroup *autonomousCommand;
@@ -33,18 +33,20 @@ private:
 		autoMode->AddDefault("Default", new AutonomousCommandGroup());
 
 		autoMode->AddObject("Four Bin", new AutonomousFourBin());
-		autoMode->AddObject("MagicalMysteryMode(Get Scooby and the Gang)", new MagicalMysteryMode());
+		autoMode->AddObject("MagicalMysteryMode(Get Scooby and the Gang)",
+				new MagicalMysteryMode());
 		autonomousCommand = new AutonomousCommandGroup();
 		//autonomousFourBin = new AutonomousFourBin();
-		SmartDashboard::PutData("Autonomous Mode", autoMode);;
+		SmartDashboard::PutData("Autonomous Mode", autoMode);
+		;
 		driveCommand = new DriveCommand();
-		winchCommand= new WinchCommand();
+		winchCommand = new WinchCommand();
 		liftCommand = new ElevatorCommand();
 		intakeCommand = new IntakeCommand();
-		lw =LiveWindow::GetInstance();
+		lw = LiveWindow::GetInstance();
 
 	}
-	
+
 	virtual void DisabledPeriodic()
 	{
 		Scheduler::GetInstance()->Run();

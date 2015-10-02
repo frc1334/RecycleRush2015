@@ -3,13 +3,11 @@
 
 #include "Commands/CommandGroup.h"
 
-class AutonomousFourBin: public CommandGroup
-
-
+class AutonomousFourBin : public CommandGroup
 
 {
 public:
-  AutonomousFourBin();
+	AutonomousFourBin();
 };
 
 #endif

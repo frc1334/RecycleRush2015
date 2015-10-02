@@ -3,13 +3,11 @@
 
 #include "Commands/CommandGroup.h"
 
-class MagicalMysteryMode: public CommandGroup
-
-
+class MagicalMysteryMode : public CommandGroup
 
 {
 public:
-  MagicalMysteryMode();
+	MagicalMysteryMode();
 };
 
 #endif

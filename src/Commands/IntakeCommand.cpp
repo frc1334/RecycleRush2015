@@ -14,8 +14,9 @@ void IntakeCommand::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void IntakeCommand::Execute()
 {
-		pickupSubsystem->Intake(oi->GetDriverIntakeDirection(), oi->GetDriverIntakeSpeed(), oi->GetDriverIntakeSpeed());
-		pickupSubsystem->intakeSolenoid.Set(oi->GetDriverIntakeToggle());
+	pickupSubsystem->Intake(oi->GetDriverIntakeDirection(),
+			oi->GetDriverIntakeSpeed(), oi->GetDriverIntakeSpeed());
+	pickupSubsystem->intakeSolenoid.Set(oi->GetDriverIntakeToggle());
 }
 
 // Make this return true when this Command no longer needs to run execute()

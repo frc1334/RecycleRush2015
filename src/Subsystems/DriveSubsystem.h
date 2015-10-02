@@ -5,7 +5,7 @@
 #include "WPILib.h"
 #include "../RobotMap.h"
 
-class DriveSubsystem: public Subsystem
+class DriveSubsystem : public Subsystem
 {
 private:
 	// It's desirable that everything possible under private except

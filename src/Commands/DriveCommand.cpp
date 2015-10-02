@@ -18,17 +18,18 @@ void DriveCommand::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void DriveCommand::Execute()
 {
-	driveSubsystem->Drive(oi->GetDriveLeftTrigger(), oi->GetDriveRightTrigger(), oi->GetDriveSteering());
+	driveSubsystem->Drive(oi->GetDriveLeftTrigger(), oi->GetDriveRightTrigger(),
+			oi->GetDriveSteering());
 	//driveSubsystem->DriveRight();
 	//driveSubsystem->Drive(-oi->GetDriveThrottle(), oi->GetDriveSteering());
 	//cout <<"Trigger Values: " << oi->GetDriveThrottle() << endl;
 
 	/*if (oi->GetShiftUp() && !shiftUp)
-			drivetrainsubsystem->SetShiftState(true);
-	if (oi->GetShiftDown() && !shiftDown)
-			drivetrainsubsystem->SetShiftState(false);
-	shiftUp = oi->GetShiftUp();
-	shiftDown = oi->GetShiftDown();*/
+	 drivetrainsubsystem->SetShiftState(true);
+	 if (oi->GetShiftDown() && !shiftDown)
+	 drivetrainsubsystem->SetShiftState(false);
+	 shiftUp = oi->GetShiftUp();
+	 shiftDown = oi->GetShiftDown();*/
 }
 
 // Make this return true when this Command no longer needs to run execute()

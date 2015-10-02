@@ -15,7 +15,7 @@
  * CommandBase stores creates and stores each control system. To access a
  * subsystem elsewhere in your code in your code use CommandBase.examplesubsystem
  */
-class CommandBase: public Command
+class CommandBase : public Command
 {
 public:
 	CommandBase(char const *name);
@@ -24,7 +24,7 @@ public:
 	// Create a single static instance of all of your subsystems
 	static PickupSubsystem *pickupSubsystem;
 	static LiftSubsystem *pidElevatorSubsystem;
-    static OI *oi;
+	static OI *oi;
 	static DriveSubsystem *driveSubsystem;
 	static CanBurglerSubsystem *canBurglerSubsystem;
 };

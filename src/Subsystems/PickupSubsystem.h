@@ -5,12 +5,11 @@
 #include "WPILib.h"
 #include "../RobotMap.h"
 
-class PickupSubsystem: public Subsystem
+class PickupSubsystem : public Subsystem
 {
 private:
 
 	Talon intakeRight, intakeLeft;
-
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities

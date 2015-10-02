@@ -1,4 +1,3 @@
-
 #include "ElevatorCommand.h"
 
 ElevatorCommand::ElevatorCommand()
@@ -15,7 +14,7 @@ void ElevatorCommand::Execute()
 	pidElevatorSubsystem->Lift(oi->GetOperatorElevator());
 	//pidElevatorSubsystem->NSLift(oi->GetOperatorElevator());
 	//if(oi->GetOperatorMoveTotes())
-		//pidElevatorSubsystem->SetSetpoint(1.0);
+	//pidElevatorSubsystem->SetSetpoint(1.0);
 }
 bool ElevatorCommand::IsFinished()
 {

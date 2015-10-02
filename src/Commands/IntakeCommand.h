@@ -4,7 +4,7 @@
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class IntakeCommand: public CommandBase
+class IntakeCommand : public CommandBase
 {
 private:
 

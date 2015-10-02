@@ -1,8 +1,7 @@
-
 #include "AutonomousWinchCommand.h"
 
-AutonomousWinchCommand::AutonomousWinchCommand(double seconds, float speed)
-	: delay(), seconds(seconds), speed(speed)
+AutonomousWinchCommand::AutonomousWinchCommand(double seconds, float speed) :
+		delay(), seconds(seconds), speed(speed)
 {
 	Requires(canBurglerSubsystem);
 }

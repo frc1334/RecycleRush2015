@@ -1,4 +1,3 @@
-
 #ifndef AUTONOMOUSZEROCOMMAND_H
 #define AUTONOMOUSZEROCOMMAND_H
 #include "../CommandBase.h"

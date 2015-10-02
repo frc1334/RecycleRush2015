@@ -7,8 +7,8 @@
 #include "CanBurglerSubsystem.h"
 #include "../RobotMap.h"
 
-CanBurglerSubsystem::CanBurglerSubsystem():
-		Subsystem("CanBurglerSubsystem"),winch(WINCH)
+CanBurglerSubsystem::CanBurglerSubsystem() :
+		Subsystem("CanBurglerSubsystem"), winch(WINCH)
 {
 	winchstop = new DigitalInput(WINCHSTOP);
 
@@ -22,7 +22,7 @@ void CanBurglerSubsystem::InitDefaultCommand()
 void CanBurglerSubsystem::Winch(float speed)
 {
 	winch.Set(speed);
-	if(winchstop->Get())
+	if (winchstop->Get())
 	{
 		winch.Set(0);
 	}
@@ -33,5 +33,4 @@ void CanBurglerSubsystem::Reset()
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-
 
