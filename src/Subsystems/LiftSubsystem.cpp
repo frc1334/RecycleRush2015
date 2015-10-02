@@ -48,15 +48,15 @@ void LiftSubsystem::Lift(float speed)
 
 	if (beltEncoderL->GetDistance() < 400 && left.Get() < 0)
 	{
-		P = 0.0001f;
+		P = 0.003f;
 	}
 	if (beltEncoderR->GetDistance() < 400 && right.Get() > 0)
 	{
-		P = 0.0001f;
+		P = 0.003f;
 	}
 	else
 	{
-		P = 0.0060f;	//added a 0
+		P = 0.006f;	//added a 0
 	}
 	//End of softlanding
 
