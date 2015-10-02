@@ -27,22 +27,22 @@ const int JOYSTICK_OPERATOR = 1;
 // Motors
 const int LEFT1 = 0;
 const int LEFT2 = 1;
-const int RIGHT1 = 2;
-const int RIGHT2 = 3;
-const int ELEVATOR_LEFT = 4;
-const int ELEVATOR_RIGHT = 5;
-const int INTAKE_MOTOR_LEFT = 6;
+const int RIGHT1 = 4 ;
+const int RIGHT2 = 5;
+const int ELEVATOR_LEFT = 2;
+const int ELEVATOR_RIGHT = 6;
+const int INTAKE_MOTOR_LEFT = 3;
 const int INTAKE_MOTOR_RIGHT = 7;
 const int WINCH = 8;
 // Solenoids
 const int INTAKE_SOLENOID = 0;
 // Digital Input
-const int ELEVATOR_ENCODER_L = 0;
-const int ELEVATOR_ENCODER_L_B = 1;
-const int ELEVATOR_ENCODER_R = 2;
-const int ELEVATOR_ENCODER_R_B = 3;
-const int ELEVATOR_LIMITSWITCH_L = 4;
-const int ELEVATOR_LIMITSWITCH_R = 5;
+const int ELEVATOR_ENCODER_L = 4;
+const int ELEVATOR_ENCODER_L_B = 5;
+const int ELEVATOR_ENCODER_R = 3;
+const int ELEVATOR_ENCODER_R_B = 2;
+const int ELEVATOR_LIMITSWITCH_L = 1;
+const int ELEVATOR_LIMITSWITCH_R = 6;
 const int WINCHSTOP = 6;
 // Encoders
 const int ENCODER_BELT_LEFT = 0;
